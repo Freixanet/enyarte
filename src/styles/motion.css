@@ -1,7 +1,67 @@
-::view-transition-old(root),
-::view-transition-new(root) {
+@keyframes enyarte-vt-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes enyarte-vt-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+::view-transition {
+  background-color: var(--c-bone);
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  mix-blend-mode: plus-lighter;
+  background-color: var(--c-bone);
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root) {
+  animation-name: enyarte-vt-fade-out;
   animation-duration: var(--dur-el);
   animation-timing-function: var(--ease-fn);
+}
+
+::view-transition-new(root) {
+  animation-name: enyarte-vt-fade-in;
+  animation-duration: var(--dur-el);
+  animation-timing-function: var(--ease-fn);
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-name: enyarte-vt-fade-out !important;
+  animation-duration: var(--dur-page-mobile);
+  animation-timing-function: var(--ease-poetic) !important;
+}
+
+::view-transition-new(*) {
+  animation-name: enyarte-vt-fade-in !important;
+}
+
+::view-transition-old(root) {
+  animation-name: enyarte-vt-fade-out !important;
+  animation-duration: var(--dur-el) !important;
+  animation-timing-function: var(--ease-fn) !important;
+}
+
+::view-transition-new(root) {
+  animation-name: enyarte-vt-fade-in !important;
+  animation-duration: var(--dur-el) !important;
+  animation-timing-function: var(--ease-fn) !important;
 }
 
 ::view-transition-group(*) {
@@ -10,6 +70,11 @@
 }
 
 @media (min-width: 64rem) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: var(--dur-page-desktop);
+  }
+
   ::view-transition-group(*) {
     animation-duration: var(--dur-page-desktop);
   }
@@ -29,6 +94,13 @@
   pointer-events: none;
   z-index: 200;
   will-change: transform;
+  opacity: 0;
+}
+
+.emerger-line[hidden] {
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -45,11 +117,24 @@
     animation-timing-function: linear !important;
     animation-iteration-count: 1 !important;
   }
+
+  ::view-transition-old(*) {
+    animation-name: enyarte-vt-fade-out !important;
+  }
+
+  ::view-transition-new(*) {
+    animation-name: enyarte-vt-fade-in !important;
+  }
 }
 
-html[data-reduced-motion] ::view-transition-old(*),
-html[data-reduced-motion] ::view-transition-new(*) {
+html[data-reduced-motion] ::view-transition-old(*) {
+  animation-name: enyarte-vt-fade-out !important;
   animation-duration: 300ms !important;
   animation-timing-function: linear !important;
-  animation-iteration-count: 1 !important;
+}
+
+html[data-reduced-motion] ::view-transition-new(*) {
+  animation-name: enyarte-vt-fade-in !important;
+  animation-duration: 300ms !important;
+  animation-timing-function: linear !important;
 }

@@ -3,6 +3,10 @@
 @import './tokens.css';
 @import './reset.css';
 
+html {
+  background-color: var(--c-bone);
+}
+
 body {
   background-color: var(--c-bone);
   color: var(--c-ink);
