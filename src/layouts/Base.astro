@@ -10,6 +10,7 @@ import {
 } from '../i18n';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   locale: Locale;
@@ -61,6 +62,7 @@ const personSchema = {
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <ClientRouter />
     <slot name="head" />
   </head>
   <body>
@@ -69,8 +71,19 @@ const personSchema = {
       <slot />
     </main>
     <Footer locale={locale} />
+    <div id="emerger-line" class="emerger-line" aria-hidden="true" hidden></div>
   </body>
 </html>
+
+<script>
+  import { initMotion } from '../scripts/motion';
+  import { initPageEnter } from '../scripts/page-enter';
+  import { initTransitions } from '../scripts/transitions';
+
+  initMotion();
+  initPageEnter();
+  initTransitions();
+</script>
 
 <style is:global>
   .main {

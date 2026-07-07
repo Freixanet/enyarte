@@ -37,6 +37,7 @@ const price =
   <a class="work-card__link" href={href}>
     <div class="work-card__frame">
       <Image
+        transition:name={`work-cover-${work.slug}`}
         class="work-card__cover"
         src={data.cover}
         alt={data.title}

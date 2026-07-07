@@ -16,7 +16,7 @@ const switchHref = alternatePath(currentPath, slug);
 const switchLabel = locale === 'es' ? t('nav.langToEn', locale) : t('nav.langToEs', locale);
 ---
 
-<header class="nav">
+<header class="nav" transition:persist="nav">
   <div class="nav__inner">
     <a class="nav__brand" href={homeHref}>{t('site.artistName', locale)}</a>
     <nav class="nav__links" aria-label={t('nav.home', locale)}>

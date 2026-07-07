@@ -1,9 +1,55 @@
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-el);
+  animation-timing-function: var(--ease-fn);
+}
+
+::view-transition-group(*) {
+  animation-duration: var(--dur-page-mobile);
+  animation-timing-function: var(--ease-poetic);
+}
+
+@media (min-width: 64rem) {
+  ::view-transition-group(*) {
+    animation-duration: var(--dur-page-desktop);
+  }
+}
+
+::view-transition-group(root) {
+  animation-duration: var(--dur-el);
+  animation-timing-function: var(--ease-fn);
+}
+
+.emerger-line {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 1px;
+  background-color: color-mix(in srgb, var(--c-earth) 30%, transparent);
+  pointer-events: none;
+  z-index: 200;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  .not-found__water {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 300ms !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+html[data-reduced-motion] ::view-transition-old(*),
+html[data-reduced-motion] ::view-transition-new(*) {
+  animation-duration: 300ms !important;
+  animation-timing-function: linear !important;
+  animation-iteration-count: 1 !important;
 }

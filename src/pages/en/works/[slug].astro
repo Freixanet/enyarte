@@ -56,6 +56,7 @@ const workTitle = `${data.title} (${data.year})`;
       <div class="work__media">
         <button class="work__zoom" type="button" data-lightbox-open aria-label={fill('work.openZoom')}>
           <Image
+            transition:name={`work-cover-${work.slug}`}
             class="work__cover"
             src={data.cover}
             alt={data.title}
@@ -105,9 +106,10 @@ const workTitle = `${data.title} (${data.year})`;
           )}
         </div>
         <TrustBlock locale={locale} />
-        <ScaleVisualizer widthCm={data.width_cm} heightCm={data.height_cm} locale={locale} />
-        <p class="work__story">{data.story_en}</p>
-      </div>
+        <div data-enter>
+          <ScaleVisualizer widthCm={data.width_cm} heightCm={data.height_cm} locale={locale} />
+        </div>
+        <p class="work__story" data-enter>{data.story_en}</p>
     </div>
   </article>
 

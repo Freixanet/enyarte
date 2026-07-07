@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
 const copyright = t('site.copyright', locale).replace('{year}', String(year));
 ---
 
-<footer class="footer">
+<footer class="footer" transition:persist="footer">
   <div class="footer__inner">
     <nav class="footer__links" aria-label={t('footer.privacy', locale)}>
       {links.map((link) => (
