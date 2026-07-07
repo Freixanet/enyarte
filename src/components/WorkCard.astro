@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n';
 import { pathFor, t } from '../i18n';
+import GlassFracture from './GlassFracture.astro';
 
 interface Props {
   work: CollectionEntry<'works'>;
@@ -33,6 +34,7 @@ const price =
   data-kind={data.kind}
   data-price={priceBucket}
   data-size={sizeBucket}
+  data-series={data.series}
 >
   <a class="work-card__link" href={href}>
     <div class="work-card__frame">
@@ -45,6 +47,7 @@ const price =
         sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw"
         loading="lazy"
       />
+      <GlassFracture />
     </div>
     <div class="work-card__caption">
       <h2 class="work-card__title">{data.title}</h2>
@@ -68,6 +71,7 @@ const price =
   }
 
   .work-card__frame {
+    position: relative;
     aspect-ratio: 4 / 5;
     background-color: var(--c-paper);
     border-radius: var(--radius);

@@ -6,7 +6,8 @@ technique_en: Mixed media on paper
 width_cm: 45.72
 height_cm: 60.96
 kind: painting
-series: none
+# series PROVISIONAL — travesía pendiente de confirmación cliente (F6/F7)
+series: cuba
 status: sold
 price_eur: null
 featured: true

@@ -1,0 +1,102 @@
+/* Modo narrativo "travesía" (§9 F5). Fondo profundo, agrupación por series.
+   La imagen de obra sigue SIEMPRE sobre marco hueso/papel (§4): sólo cambia el
+   fondo de página y el color del texto de los captions. */
+
+/* Los overrides usan el prefijo html[data-narrative] para ganar en especificidad
+   a los estilos scoped de los componentes (misma clase → evita empate). */
+html[data-narrative] body {
+  background-color: var(--c-deep);
+  color: var(--c-on-deep);
+}
+
+html[data-narrative] .page__heading,
+html[data-narrative] .work-card__title,
+html[data-narrative] .work-card__price {
+  color: var(--c-on-deep);
+}
+
+html[data-narrative] .work-card__year,
+html[data-narrative] .work-card__badge {
+  color: color-mix(in srgb, var(--c-on-deep) 72%, transparent);
+}
+
+/* El hover de card usa --c-cta (terracota), PROHIBIDO sobre --c-deep (§4). */
+html[data-narrative] .work-card__link:hover .work-card__title,
+html[data-narrative] .work-card__link:focus-visible .work-card__title {
+  color: color-mix(in srgb, var(--c-on-deep) 78%, transparent);
+}
+
+/* --c-wine y --c-cta están PROHIBIDOS sobre --c-deep (§4): el punto de "vendida"
+   pasa a hueso; la semántica queda en el texto del badge. */
+html[data-narrative] .work-card__badge--sold::before {
+  background-color: var(--c-on-deep);
+}
+
+html[data-narrative] .works__toggle {
+  color: var(--c-on-deep);
+  border-color: color-mix(in srgb, var(--c-on-deep) 40%, transparent);
+}
+
+html[data-narrative] .works__toggle:hover {
+  border-color: var(--c-on-deep);
+}
+
+.travesia {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}
+
+.travesia__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.travesia__title {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  color: var(--c-on-deep);
+}
+
+.travesia__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+}
+
+@media (min-width: 48rem) {
+  .travesia__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .travesia__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* CSS recomendado por Lenis (sólo relevante cuando se activa en desktop). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}

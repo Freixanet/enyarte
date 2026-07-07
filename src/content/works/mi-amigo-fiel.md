@@ -6,7 +6,8 @@ technique_en: Acrylic on wood
 width_cm: null
 height_cm: null
 kind: object
-series: none
+# series PROVISIONAL — travesía pendiente de confirmación cliente (F6/F7)
+series: roma
 status: available
 # price_eur PROVISIONAL — pendiente confirmación cliente
 price_eur: 1100

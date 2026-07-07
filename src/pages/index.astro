@@ -1,13 +1,91 @@
 ---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { t } from '../i18n';
+import CtaButton from '../components/CtaButton.astro';
+import { pathFor, t } from '../i18n';
 
 const locale = 'es';
+const works = await getCollection('works');
+const hero =
+  works.find((work) => work.slug === 'what-we-brought-to-the-table') ??
+  works.find((work) => work.data.featured) ??
+  works[0];
 ---
 
 <Base locale={locale} pageKey="home">
-  <div class="page">
-    <h1 class="page__heading">{t('pages.home.heading', locale)}</h1>
-    <p class="page__intro">{t('pages.home.intro', locale)}</p>
-  </div>
+  <section class="hero">
+    <div class="hero__media">
+      <div class="hero__media-inner" data-hero-parallax>
+        <Image
+          class="hero__image"
+          src={hero.data.cover}
+          alt={hero.data.title}
+          widths={[400, 800, 1200, 1600]}
+          sizes="(min-width: 64rem) 60vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <div class="hero__intro">
+      <h1 class="hero__name">{t('site.artistName', locale)}</h1>
+      <p class="hero__statement">{t('pages.home.intro', locale)}</p>
+      <CtaButton variant="primary" href={pathFor('works', locale)}>
+        {t('pages.home.cta', locale)}
+      </CtaButton>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .hero {
+    width: min(100% - var(--sp-4) * 2, var(--maxw));
+    margin-inline: auto;
+    padding-inline: var(--sp-4);
+    display: grid;
+    gap: var(--sp-5);
+  }
+
+  .hero__media {
+    overflow: hidden;
+    border-radius: var(--radius);
+    background-color: var(--c-paper);
+  }
+
+  .hero__media-inner {
+    will-change: transform;
+  }
+
+  .hero__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero__name {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--fs-hero);
+    line-height: var(--lh-tight);
+    color: var(--c-ink);
+  }
+
+  .hero__statement {
+    margin-block: var(--sp-4);
+    font-family: var(--f-ui);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+    max-width: 32ch;
+  }
+
+  @media (min-width: 64rem) {
+    .hero {
+      grid-template-columns: 3fr 2fr;
+      align-items: center;
+      gap: var(--sp-6);
+    }
+  }
+</style>

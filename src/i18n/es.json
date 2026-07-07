@@ -67,6 +67,16 @@
     "empty": "Ninguna obra coincide con los filtros seleccionados.",
     "emptyCta": "Explorar encargos privados"
   },
+  "narrative": {
+    "toNarrative": "Ver como travesía",
+    "toCatalog": "Ver como catálogo",
+    "seriesCuba": "Cuba",
+    "seriesMiami": "Miami",
+    "seriesSf": "San Francisco",
+    "seriesRoma": "Roma",
+    "seriesEspana": "España",
+    "seriesNone": "Sin serie"
+  },
   "scale": {
     "title": "Visualización de escala",
     "caption": "Escala: figura 170 cm · obra {dims}"
@@ -123,7 +133,8 @@
   "pages": {
     "home": {
       "heading": "Enya Fontanills",
-      "intro": "Pintura surrealista contemporánea e instalación. El agua que separa y une."
+      "intro": "Pintura surrealista contemporánea e instalación. El agua que separa y une.",
+      "cta": "Ver obras disponibles"
     },
     "works": {
       "heading": "Obras",

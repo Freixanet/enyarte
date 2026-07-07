@@ -10,15 +10,39 @@ const locale = 'es';
 const works = (await getCollection('works')).sort(
   (a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.order - b.data.order,
 );
+
+const narrativeLabels = {
+  toNarrative: t('narrative.toNarrative', locale),
+  toCatalog: t('narrative.toCatalog', locale),
+  cuba: t('narrative.seriesCuba', locale),
+  miami: t('narrative.seriesMiami', locale),
+  sf: t('narrative.seriesSf', locale),
+  roma: t('narrative.seriesRoma', locale),
+  espana: t('narrative.seriesEspana', locale),
+  none: t('narrative.seriesNone', locale),
+};
 ---
 
 <Base locale={locale} pageKey="works">
-  <div class="page">
-    <h1 class="page__heading">{t('pages.works.heading', locale)}</h1>
+  <div class="page" data-works>
+    <div class="works__head">
+      <h1 class="page__heading">{t('pages.works.heading', locale)}</h1>
+      <button
+        type="button"
+        class="works__toggle"
+        data-narrative-toggle
+        data-labels={JSON.stringify(narrativeLabels)}
+        aria-pressed="false"
+        hidden
+      >
+        {t('narrative.toNarrative', locale)}
+      </button>
+    </div>
     <WorkFilters locale={locale} basePath={pathFor('works', locale)} />
-    <ul class="works-grid">
+    <ul class="works-grid" data-grid>
       {works.map((work) => <WorkCard work={work} locale={locale} />)}
     </ul>
+    <div class="travesia" data-travesia hidden></div>
     <div class="works-empty" data-filter-empty hidden>
       <p class="works-empty__text">{t('filters.empty', locale)}</p>
       <CtaButton variant="secondary" href={pathFor('commissions', locale)}>
@@ -29,6 +53,31 @@ const works = (await getCollection('works')).sort(
 </Base>
 
 <style>
+  .works__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+  }
+
+  .works__toggle {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    min-height: 44px;
+    padding-inline: var(--sp-3);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    background-color: transparent;
+    color: var(--c-ink);
+    cursor: pointer;
+    transition: border-color var(--dur-micro) var(--ease-fn);
+  }
+
+  .works__toggle:hover {
+    border-color: var(--c-cta);
+  }
+
   .works-grid {
     list-style: none;
     margin: 0;

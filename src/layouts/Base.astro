@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/motion.css';
+import '../styles/narrative.css';
 import type { Locale, PageKey } from '../i18n';
 import {
   absoluteUrl,
@@ -79,10 +80,14 @@ const personSchema = {
   import { initMotion } from '../scripts/motion';
   import { initPageEnter } from '../scripts/page-enter';
   import { initTransitions } from '../scripts/transitions';
+  import { initHeroParallax } from '../scripts/hero-parallax';
+  import { initNarrative } from '../scripts/narrative';
 
   initMotion();
   initPageEnter();
   initTransitions();
+  initHeroParallax();
+  initNarrative();
 </script>
 
 <style is:global>

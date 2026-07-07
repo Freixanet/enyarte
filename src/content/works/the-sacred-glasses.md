@@ -6,7 +6,8 @@ technique_en: Acrylic and resin on glass
 width_cm: null
 height_cm: null
 kind: installation
-series: none
+# series PROVISIONAL — travesía pendiente de confirmación cliente (F6/F7)
+series: miami
 status: sold
 price_eur: null
 featured: false

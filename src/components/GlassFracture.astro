@@ -1,0 +1,57 @@
+---
+// Firma "fractura de vidrio" (§6.2): trazo SVG decorativo que se dibuja desde
+// una esquina del MARCO en hover (desktop + pointer:fine). Es puramente
+// decorativo (aria-hidden): el contenido de la card vive en .work-card__caption.
+// No toca la imagen (§6.3). CSS declarativo, sin JS ni GSAP.
+---
+
+<div class="glass-fracture" aria-hidden="true">
+  <svg class="glass-fracture__svg" viewBox="0 0 100 125" preserveAspectRatio="none" focusable="false">
+    <path class="glass-fracture__path" pathLength="1" d="M0 0 L34 22 L23 55" />
+    <path class="glass-fracture__path" pathLength="1" d="M0 0 L15 41" />
+    <path class="glass-fracture__path" pathLength="1" d="M34 22 L62 31" />
+  </svg>
+</div>
+
+<style is:global>
+  .glass-fracture {
+    position: absolute;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glass-fracture__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glass-fracture__path {
+    fill: none;
+    stroke: var(--c-line);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset var(--dur-el) var(--ease-fn);
+  }
+
+  @media (pointer: fine) {
+    .glass-fracture {
+      display: block;
+    }
+
+    .work-card__link:hover .glass-fracture__path,
+    .work-card__link:focus-visible .glass-fracture__path {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glass-fracture {
+      display: none;
+    }
+  }
+</style>

@@ -7,7 +7,8 @@ width_cm: 91
 height_cm: 91
 depth_cm: 91
 kind: object
-series: none
+# series PROVISIONAL — travesía pendiente de confirmación cliente (F6/F7)
+series: sf
 status: available
 # price_eur PROVISIONAL — pendiente confirmación cliente
 price_eur: 1400

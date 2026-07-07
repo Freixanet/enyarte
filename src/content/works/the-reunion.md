@@ -7,7 +7,8 @@ width_cm: 243.84
 height_cm: 152.4
 kind: painting
 status: reserved
-series: none
+# series PROVISIONAL — travesía pendiente de confirmación cliente (F6/F7)
+series: miami
 # price_eur PROVISIONAL — pendiente confirmación cliente
 price_eur: 2800
 featured: true

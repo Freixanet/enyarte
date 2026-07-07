@@ -6,7 +6,8 @@ technique_en: Acrylic on canvas
 width_cm: 30.48
 height_cm: 40.64
 kind: painting
-series: none
+# series PROVISIONAL — travesía pendiente de confirmación cliente (F6/F7)
+series: espana
 status: available
 # price_eur PROVISIONAL — pendiente confirmación cliente
 price_eur: 900

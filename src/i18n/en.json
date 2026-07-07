@@ -67,6 +67,16 @@
     "empty": "No works match the selected filters.",
     "emptyCta": "Explore private commissions"
   },
+  "narrative": {
+    "toNarrative": "View as journey",
+    "toCatalog": "View as catalogue",
+    "seriesCuba": "Cuba",
+    "seriesMiami": "Miami",
+    "seriesSf": "San Francisco",
+    "seriesRoma": "Rome",
+    "seriesEspana": "Spain",
+    "seriesNone": "Unassigned"
+  },
   "scale": {
     "title": "Scale visualization",
     "caption": "Scale: figure 170 cm · work {dims}"
@@ -123,7 +133,8 @@
   "pages": {
     "home": {
       "heading": "Enya Fontanills",
-      "intro": "Contemporary surrealist painting and installation. The water that separates and unites."
+      "intro": "Contemporary surrealist painting and installation. The water that separates and unites.",
+      "cta": "See available works"
     },
     "works": {
       "heading": "Works",
