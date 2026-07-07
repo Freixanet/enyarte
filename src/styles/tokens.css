@@ -1,0 +1,42 @@
+:root {
+  /* Color */
+  --c-bone: #f4f1ea;          /* fondo global default */
+  --c-paper: #ebe5da;         /* superficies secundarias sobre hueso */
+  --c-deep: #0d2b45;          /* azul profundo: SOLO hero y modo narrativo */
+  --c-deep-soft: #182f43;     /* superficies oscuras secundarias */
+  --c-ink: #10222f;           /* texto principal sobre hueso (azul casi negro) */
+  --c-ink-2: #5e625f;         /* texto secundario sobre hueso */
+  --c-line: #c9c1b6;          /* bordes, separadores */
+  --c-cta: #c2593a;           /* terracota: ÚNICO color de acción sobre hueso */
+  --c-cta-hover: #a8461f;
+  --c-earth: #8a5d3b;         /* acento tierra, solo filetes/detalles */
+  --c-wine: #6b2737;          /* decorativo sobre hueso; PROHIBIDO sobre --c-deep */
+  --c-on-deep: #f4f1ea;       /* texto sobre azul */
+  /* Sobre fondo oscuro, el CTA es botón sólido --c-bone con texto --c-deep. Nunca vino ni terracota sobre azul. */
+
+  /* Tipografía */
+  --f-display: 'Fraunces Variable', serif;   /* títulos, nombres de obra (usar italic en títulos de obra) */
+  --f-ui: 'Inter Variable', system-ui, sans-serif;
+  --fs-hero: clamp(2.8rem, 8vw, 7rem);
+  --fs-h1: clamp(2rem, 5vw, 3.5rem);
+  --fs-h2: clamp(1.4rem, 3vw, 2rem);
+  --fs-body: 1rem;            /* 16px mínimo SIEMPRE en móvil */
+  --fs-meta: 0.875rem;
+  --lh-tight: 1.1;
+  --lh-body: 1.6;
+
+  /* Espaciado (escala única, prohibido usar valores fuera de esta) */
+  --sp-1: 0.25rem; --sp-2: 0.5rem; --sp-3: 1rem; --sp-4: 1.5rem;
+  --sp-5: 2.5rem; --sp-6: 4rem; --sp-7: 6rem; --sp-8: 9rem;
+
+  /* Motion (§6) */
+  --ease-fn: cubic-bezier(0.16, 1, 0.3, 1);      /* funcional: UI, filtros, compra */
+  --ease-poetic: cubic-bezier(0.65, 0, 0.15, 1); /* narrativa, emerger */
+  --dur-micro: 250ms;
+  --dur-el: 450ms;
+  --dur-page-mobile: 400ms;
+  --dur-page-desktop: 650ms;
+
+  --radius: 2px;              /* casi cuadrado; estética galería, no app */
+  --maxw: 1440px;
+}
