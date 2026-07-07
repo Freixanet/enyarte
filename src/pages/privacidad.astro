@@ -1,13 +1,59 @@
 ---
 import Base from '../layouts/Base.astro';
+import { CONTACT_EMAIL } from '../config';
 import { t } from '../i18n';
 
 const locale = 'es';
+const email = CONTACT_EMAIL;
+
+const sections = [
+  { title: 'privacyPage.controllerTitle', body: 'privacyPage.controllerText' },
+  { title: 'privacyPage.formsTitle', body: 'privacyPage.formsText' },
+  { title: 'privacyPage.newsletterTitle', body: 'privacyPage.newsletterText' },
+  { title: 'privacyPage.analyticsTitle', body: 'privacyPage.analyticsText' },
+  { title: 'privacyPage.rightsTitle', body: 'privacyPage.rightsText' },
+  { title: 'privacyPage.retentionTitle', body: 'privacyPage.retentionText' },
+];
 ---
 
 <Base locale={locale} pageKey="privacy">
-  <div class="page">
+  <div class="page content">
     <h1 class="page__heading">{t('pages.privacy.heading', locale)}</h1>
-    <p class="page__intro">{t('pages.privacy.intro', locale)}</p>
+    <p class="content__meta">{t('privacyPage.updated', locale)}</p>
+    <p class="page__intro">{t('privacyPage.intro', locale)}</p>
+    {sections.map((section) => (
+      <section class="content__section">
+        <h2 class="content__title">{t(section.title, locale)}</h2>
+        <p class="content__text">{t(section.body, locale).replace('{email}', email)}</p>
+      </section>
+    ))}
   </div>
 </Base>
+
+<style>
+  .content__meta {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+    margin-block-end: var(--sp-3);
+  }
+
+  .content__section {
+    margin-block-start: var(--sp-5);
+  }
+
+  .content__title {
+    font-family: var(--f-display);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-tight);
+    color: var(--c-ink);
+    margin-block-end: var(--sp-2);
+  }
+
+  .content__text {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+  }
+</style>

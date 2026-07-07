@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" role="img" aria-label="Enya Fontanills">
+  <rect width="400" height="500" fill="#ebe5da"/>
+  <circle cx="200" cy="170" r="72" fill="#c9c1b6"/>
+  <path d="M110 420 C110 320 150 280 200 280 C250 280 290 320 290 420 Z" fill="#c9c1b6"/>
+  <text x="200" y="470" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#10222f">Enya Fontanills</text>
+</svg>

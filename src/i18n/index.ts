@@ -72,7 +72,8 @@ export type PageKey =
   | 'contact'
   | 'purchaseFaq'
   | 'privacy'
-  | 'notFound';
+  | 'notFound'
+  | 'thankYou';
 
 const PAGE_PATHS: Record<PageKey, Record<Locale, string>> = {
   home: { es: '/', en: '/en/' },
@@ -85,6 +86,7 @@ const PAGE_PATHS: Record<PageKey, Record<Locale, string>> = {
   purchaseFaq: { es: '/faq-compra', en: '/en/purchase-faq' },
   privacy: { es: '/privacidad', en: '/en/privacy' },
   notFound: { es: '/404', en: '/en/404' },
+  thankYou: { es: '/gracias', en: '/en/thank-you' },
 };
 
 export function pathFor(pageKey: PageKey, locale: Locale): string {

@@ -1,0 +1,165 @@
+---
+import type { Locale } from '../i18n';
+import { absoluteUrl, pathFor, t } from '../i18n';
+import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from '../config';
+
+interface Props {
+  locale: Locale;
+  refMap: Record<string, string>;
+}
+
+const { locale, refMap } = Astro.props;
+const redirect = absoluteUrl(pathFor('thankYou', locale));
+const inspiredTemplate = t('forms.inspiredBy', locale);
+---
+
+<form class="form" id="commission-form" action={WEB3FORMS_ENDPOINT} method="POST">
+  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+  <input type="hidden" name="redirect" value={redirect} />
+  <input type="hidden" name="subject" value={t('meta.commissions.title', locale)} />
+  <input type="hidden" name="form_type" value="commission" />
+  <div id="commission-ref-fields"></div>
+  <p class="form__ref" id="commission-ref-label" hidden></p>
+  <label class="form__honeypot">
+    {t('forms.honeypotLabel', locale)}
+    <input type="text" name="botcheck" tabindex="-1" autocomplete="off" />
+  </label>
+  <div class="form__field">
+    <label class="form__label" for="commission-name">{t('forms.name', locale)}</label>
+    <input class="form__input" id="commission-name" name="name" type="text" required autocomplete="name" />
+  </div>
+  <div class="form__field">
+    <label class="form__label" for="commission-email">{t('forms.email', locale)}</label>
+    <input class="form__input" id="commission-email" name="email" type="email" required autocomplete="email" />
+  </div>
+  <div class="form__field">
+    <label class="form__label" for="commission-vision">{t('forms.vision', locale)}</label>
+    <textarea class="form__textarea" id="commission-vision" name="vision" rows="6" required></textarea>
+  </div>
+  <div class="form__field">
+    <label class="form__label" for="commission-budget">{t('forms.budget', locale)}</label>
+    <select class="form__select" id="commission-budget" name="budget" required>
+      <option value="under-1000">{t('forms.budgetUnder1000', locale)}</option>
+      <option value="1000-2500">{t('forms.budgetMid', locale)}</option>
+      <option value="over-2500">{t('forms.budgetOver2500', locale)}</option>
+    </select>
+  </div>
+  <div class="form__field">
+    <label class="form__label" for="commission-timeline">{t('forms.timeline', locale)}</label>
+    <select class="form__select" id="commission-timeline" name="timeline" required>
+      <option value="flexible">{t('forms.timelineFlexible', locale)}</option>
+      <option value="3-6-months">{t('forms.timelineMid', locale)}</option>
+      <option value="under-3-months">{t('forms.timelineUrgent', locale)}</option>
+    </select>
+  </div>
+  <button class="form__submit" type="submit">{t('forms.submitCommission', locale)}</button>
+</form>
+
+<script define:vars={{ refMap, inspiredTemplate }}>
+  const ref = new URLSearchParams(window.location.search).get('ref');
+  const title = ref ? refMap[ref] : null;
+  if (!ref || !title) return;
+
+  const fields = document.getElementById('commission-ref-fields');
+  const label = document.getElementById('commission-ref-label');
+  if (!(fields instanceof HTMLElement) || !(label instanceof HTMLElement)) return;
+
+  const refInput = document.createElement('input');
+  refInput.type = 'hidden';
+  refInput.name = 'ref';
+  refInput.value = ref;
+  fields.appendChild(refInput);
+
+  const inspiredInput = document.createElement('input');
+  inspiredInput.type = 'hidden';
+  inspiredInput.name = 'inspired_by';
+  inspiredInput.value = title;
+  fields.appendChild(inspiredInput);
+
+  label.textContent = inspiredTemplate.replace('{title}', title);
+  label.hidden = false;
+</script>
+
+<style>
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .form__ref {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    color: var(--c-ink);
+    padding: var(--sp-3);
+    background-color: var(--c-paper);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+  }
+
+  .form__honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  .form__label {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+  }
+
+  .form__input,
+  .form__textarea,
+  .form__select {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    color: var(--c-ink);
+    background-color: var(--c-bone);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    padding: var(--sp-2) var(--sp-3);
+    min-height: 44px;
+  }
+
+  .form__textarea {
+    min-height: calc(var(--sp-8) + var(--sp-4));
+    resize: vertical;
+  }
+
+  .form__input:focus-visible,
+  .form__textarea:focus-visible,
+  .form__select:focus-visible {
+    outline: 2px solid var(--c-ink);
+    outline-offset: 2px;
+  }
+
+  .form__submit {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: var(--sp-2) var(--sp-4);
+    border: 1px solid var(--c-cta);
+    border-radius: var(--radius);
+    background-color: var(--c-cta);
+    color: var(--c-bone);
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    cursor: pointer;
+    transition: background-color var(--dur-micro) var(--ease-fn);
+  }
+
+  .form__submit:hover,
+  .form__submit:focus-visible {
+    background-color: var(--c-cta-hover);
+    border-color: var(--c-cta-hover);
+  }
+</style>

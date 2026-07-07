@@ -1,13 +1,37 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { CONTACT_EMAIL } from '../../config';
 import { t } from '../../i18n';
 
 const locale = 'en';
 ---
 
 <Base locale={locale} pageKey="contact">
-  <div class="page">
+  <div class="page content">
     <h1 class="page__heading">{t('pages.contact.heading', locale)}</h1>
     <p class="page__intro">{t('pages.contact.intro', locale)}</p>
+    <p class="content__email">
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+    </p>
+    <ContactForm locale={locale} />
   </div>
 </Base>
+
+<style>
+  .content__email {
+    margin-block: var(--sp-4);
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+  }
+
+  .content__email a {
+    color: var(--c-cta);
+    text-decoration: none;
+  }
+
+  .content__email a:hover,
+  .content__email a:focus-visible {
+    color: var(--c-cta-hover);
+  }
+</style>

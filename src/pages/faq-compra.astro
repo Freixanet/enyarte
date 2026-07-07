@@ -3,11 +3,64 @@ import Base from '../layouts/Base.astro';
 import { t } from '../i18n';
 
 const locale = 'es';
+const items = [
+  { q: 'faqPage.shippingQuestion', a: 'faqPage.shippingAnswer' },
+  { q: 'faqPage.certificateQuestion', a: 'faqPage.certificateAnswer' },
+  { q: 'faqPage.returnsQuestion', a: 'faqPage.returnsAnswer' },
+  { q: 'faqPage.paymentQuestion', a: 'faqPage.paymentAnswer' },
+  { q: 'faqPage.framingQuestion', a: 'faqPage.framingAnswer' },
+  { q: 'faqPage.customsQuestion', a: 'faqPage.customsAnswer' },
+];
 ---
 
 <Base locale={locale} pageKey="purchaseFaq">
-  <div class="page">
+  <div class="page content">
     <h1 class="page__heading">{t('pages.purchaseFaq.heading', locale)}</h1>
     <p class="page__intro">{t('pages.purchaseFaq.intro', locale)}</p>
+    <!-- PROVISIONAL: revisar con Enya -->
+    <div class="faq">
+      {items.map((item) => (
+        <details class="faq__item">
+          <summary class="faq__question">{t(item.q, locale)}</summary>
+          <p class="faq__answer">{t(item.a, locale)}</p>
+        </details>
+      ))}
+    </div>
   </div>
 </Base>
+
+<style>
+  .faq {
+    margin-block-start: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .faq__item {
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    background-color: var(--c-paper);
+    padding: var(--sp-3);
+  }
+
+  .faq__question {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    color: var(--c-ink);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__answer {
+    margin-block-start: var(--sp-3);
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+  }
+</style>

@@ -7,7 +7,26 @@ const worksHref = pathFor('works', locale);
 ---
 
 <Base locale={locale} pageKey="notFound">
-  <div class="page">
+  <div class="page not-found">
+    <div class="not-found__visual" aria-hidden="true">
+      <svg class="not-found__svg" viewBox="0 0 120 160" role="presentation">
+        <path
+          class="not-found__glass"
+          d="M35 20 H85 V125 Q60 145 35 125 Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+        <path
+          class="not-found__crack"
+          d="M60 28 L52 70 M60 28 L68 55 M52 70 L45 95"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+        <rect class="not-found__water" x="38" y="90" width="44" height="30" />
+      </svg>
+    </div>
     <h1 class="page__heading">{t('pages.notFound.heading', locale)}</h1>
     <p class="page__intro">{t('pages.notFound.intro', locale)}</p>
     <p class="page__intro">
@@ -17,6 +36,41 @@ const worksHref = pathFor('works', locale);
 </Base>
 
 <style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .not-found__visual {
+    width: var(--sp-8);
+    margin-block-end: var(--sp-4);
+    color: var(--c-earth);
+  }
+
+  .not-found__svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .not-found__water {
+    fill: var(--c-deep);
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: fill-glass 3s var(--ease-poetic) infinite alternate;
+  }
+
+  @keyframes fill-glass {
+    from {
+      transform: scaleY(0.15);
+    }
+
+    to {
+      transform: scaleY(1);
+    }
+  }
+
   .not-found__link {
     color: var(--c-cta);
     text-decoration: none;

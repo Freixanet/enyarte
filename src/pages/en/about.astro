@@ -1,13 +1,111 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import portrait from '../../assets/about-portrait.svg';
 import { t } from '../../i18n';
 
 const locale = 'en';
+const statementParagraphs = t('aboutPage.statement', locale).split('\n\n');
 ---
 
 <Base locale={locale} pageKey="about">
-  <div class="page">
+  <div class="page content">
     <h1 class="page__heading">{t('pages.about.heading', locale)}</h1>
-    <p class="page__intro">{t('pages.about.intro', locale)}</p>
+    <div class="about">
+      <div class="about__portrait">
+        <Image src={portrait} alt={t('site.artistName', locale)} widths={[400, 800]} loading="lazy" />
+      </div>
+      <div class="about__bio">
+        <p class="content__text">{t('aboutPage.bio1', locale)}</p>
+        <p class="content__text">{t('aboutPage.bio2', locale)}</p>
+      </div>
+    </div>
+
+    <section class="content__section">
+      <h2 class="content__title">{t('aboutPage.statementTitle', locale)}</h2>
+      {statementParagraphs.map((paragraph) => (
+        <p class="content__text">{paragraph}</p>
+      ))}
+    </section>
+
+    <section class="content__section">
+      <h2 class="content__title">{t('aboutPage.cvTitle', locale)}</h2>
+      <h3 class="content__subtitle">{t('aboutPage.educationTitle', locale)}</h3>
+      <ul class="content__list">
+        <li>{t('aboutPage.education1', locale)}</li>
+        <li>{t('aboutPage.education2', locale)}</li>
+        <li>{t('aboutPage.education3', locale)}</li>
+      </ul>
+      <h3 class="content__subtitle">{t('aboutPage.exhibitionsCvTitle', locale)}</h3>
+      <!-- PROVISIONAL: revisar con Enya -->
+      <p class="content__text">{t('aboutPage.exhibitionsCvEmpty', locale)}</p>
+      <h3 class="content__subtitle">{t('aboutPage.pressCvTitle', locale)}</h3>
+      <!-- PROVISIONAL: revisar con Enya -->
+      <p class="content__text">{t('aboutPage.pressCvEmpty', locale)}</p>
+    </section>
   </div>
 </Base>
+
+<style>
+  .about {
+    display: grid;
+    gap: var(--sp-5);
+    margin-block-start: var(--sp-4);
+  }
+
+  @media (min-width: 48rem) {
+    .about {
+      grid-template-columns: 1fr 2fr;
+      align-items: start;
+    }
+  }
+
+  .about__portrait {
+    aspect-ratio: 4 / 5;
+    background-color: var(--c-paper);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .about__portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content__section {
+    margin-block-start: var(--sp-6);
+  }
+
+  .content__title {
+    font-family: var(--f-display);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-tight);
+    color: var(--c-ink);
+    margin-block-end: var(--sp-4);
+  }
+
+  .content__subtitle {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    color: var(--c-ink);
+    margin-block: var(--sp-4) var(--sp-2);
+  }
+
+  .content__text {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+    margin-block-end: var(--sp-3);
+  }
+
+  .content__list {
+    margin: 0 0 var(--sp-4);
+    padding-inline-start: var(--sp-4);
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+  }
+</style>

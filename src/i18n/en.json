@@ -113,6 +113,10 @@
     "notFound": {
       "title": "Page not found",
       "description": "The page you are looking for does not exist. Explore Enya Fontanills's catalogue."
+    },
+    "thankYou": {
+      "title": "Thank you",
+      "description": "Submission confirmed. Enya Fontanills replies within 48 hours."
     }
   },
   "pages": {
@@ -126,36 +130,143 @@
     },
     "commissions": {
       "heading": "Commissions",
-      "intro": "Private commissions from vision to finished work. Full content in the next phase."
+      "intro": "A private commission is a conversation between your vision and my pictorial language. I work with you from the first scene to the delivery of the original piece."
     },
     "about": {
       "heading": "About",
-      "intro": "Narrative biography, migratory map, and statement. Full content in the next phase."
+      "intro": "Born in Cuba and trained across Miami, San Francisco, and Rome, Enya Fontanills builds a pictorial universe where migratory memory, water, and the oneiric coexist on the same surface. Her work blends painting, object, and installation with an intimate, surrealist sensibility."
     },
     "exhibitions": {
       "heading": "Exhibitions",
-      "intro": "Timeline of past and upcoming exhibitions. Full content in the next phase."
+      "intro": "Timeline of past and upcoming exhibitions."
     },
     "press": {
       "heading": "Press",
-      "intro": "Press kit with bios, downloads, and images. Full content in the next phase."
+      "intro": "Press kit for galleries, media, and curators."
     },
     "contact": {
       "heading": "Contact",
-      "intro": "Direct email and form for press, galleries, and general inquiries."
+      "intro": "General inquiries, press, and galleries."
     },
     "purchaseFaq": {
       "heading": "Purchase FAQ",
-      "intro": "Shipping, certificate, returns, and payments. Full content in the next phase."
+      "intro": "Information about purchasing, shipping, and returns."
     },
     "privacy": {
       "heading": "Privacy",
-      "intro": "Privacy policy and data handling. Full content in the next phase."
+      "intro": "Enya Fontanills is the data controller for personal data collected through enyarte.com under the General Data Protection Regulation (GDPR)."
     },
     "notFound": {
       "heading": "Page not found",
       "intro": "This page does not exist or has been moved.",
       "linkWorks": "View available works"
+    },
+    "thankYou": {
+      "heading": "Thank you",
+      "message": "Thank you — I reply within 48 hours.",
+      "backHome": "Back to home"
     }
+  },
+  "forms": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "vision": "What do you have in mind?",
+    "budget": "Approximate budget",
+    "timeline": "Desired timeline",
+    "submitContact": "Send message",
+    "submitCommission": "Request commission",
+    "budgetUnder1000": "Under €1,000",
+    "budgetMid": "€1,000–2,500",
+    "budgetOver2500": "Over €2,500",
+    "timelineFlexible": "No rush",
+    "timelineMid": "3–6 months",
+    "timelineUrgent": "Under 3 months",
+    "inspiredBy": "Inspired by: {title}",
+    "honeypotLabel": "Do not fill"
+  },
+  "thankYou": {
+    "heading": "Thank you",
+    "message": "Thank you — I reply within 48 hours.",
+    "backHome": "Back to home"
+  },
+  "commissionsPage": {
+    "intro": "A private commission is a conversation between your vision and my pictorial language. I work with you from the first scene to the delivery of the original piece.",
+    "processTitle": "Process",
+    "step1Title": "Vision",
+    "step1Text": "You share the idea, the space where the work will live, and what you want it to evoke. I listen and ask questions until the scene becomes clear.",
+    "step2Title": "Sketch",
+    "step2Text": "I develop sketches and visual references to align composition, scale, and atmosphere before touching the final support.",
+    "step3Title": "Work",
+    "step3Text": "I paint or build the piece in my studio, with updates at key milestones. When finished, we coordinate shipping or delivery and include a certificate of authenticity.",
+    "fromPrice": "From €900 depending on format",
+    "typicalTimeline": "Typical timeline: 8–12 weeks",
+    "casesTitle": "Recent commissions",
+    "casesPlaceholder": "Coming soon: documented cases with process images."
+  },
+  "faqPage": {
+    "shippingQuestion": "Do you ship internationally?",
+    "shippingAnswer": "Yes. We ship insured to Spain, the EU, and the USA. Typical timelines are 5–10 business days within the EU and 10–20 business days to the USA, depending on destination and customs.",
+    "certificateQuestion": "Does it include a certificate of authenticity?",
+    "certificateAnswer": "Every original work includes a signed certificate with title, year, technique, and piece details.",
+    "returnsQuestion": "Can I return the work?",
+    "returnsAnswer": "You have 14 days from receipt to request a return if the piece does not match what was agreed. The work must be returned in the same condition and packaging.",
+    "paymentQuestion": "What payment methods do you accept?",
+    "paymentAnswer": "Bank transfer or card payment link. For reserved works, we agree on a partial payment schedule.",
+    "framingQuestion": "Do you offer framing?",
+    "framingAnswer": "I can recommend trusted framers in Spain or the USA. Framing is not included unless explicitly agreed.",
+    "customsQuestion": "How do customs and taxes work?",
+    "customsAnswer": "For international shipments, especially between Miami and Spain, import taxes are the buyer's responsibility according to the destination country. I provide documentation for customs clearance."
+  },
+  "aboutPage": {
+    "bio1": "Born in Cuba and trained across Miami, San Francisco, and Rome, Enya Fontanills builds a pictorial universe where migratory memory, water, and the oneiric coexist on the same surface. Her work blends painting, object, and installation with an intimate, surrealist sensibility.",
+    "bio2": "Her journey crosses the Atlantic like crossing a mirror: each city leaves a layer of color, a texture, a question about what is left behind and what is brought to the table. She now lives and works between Spain and Miami, with an archive in constant motion.",
+    "statementTitle": "Artist statement",
+    "statement": "The work always begins the same way: a scene comes to me like a vision. Not as an abstract idea, but as a complete image — with light, temperature, silence. Memory and desire overlap until a figure, an object, a crack in the everyday appears.\n\nI paint from that instant. Water returns again and again because it is border and bridge: it separates Cuba from Miami, joins the intimate with the collective, holds bodies crossing without a map. I use color as emotional temperature and the object as domestic relic — a glass, a table, a fragment of glass — to speak of what survives exile.\n\nI do not seek to illustrate history; I seek to make it visible at a threshold. Each piece is a crossing paused in a single frame: what is brought to the table, what breaks, what can still be filled.",
+    "cvTitle": "CV",
+    "educationTitle": "Education",
+    "education1": "New World School of the Arts, Miami",
+    "education2": "MFA, California College of the Arts, San Francisco",
+    "education3": "Master in Art & Cultural Management, Rome Business School",
+    "exhibitionsCvTitle": "Selected exhibitions",
+    "exhibitionsCvEmpty": "Details to be confirmed — full archive update coming soon.",
+    "pressCvTitle": "Press",
+    "pressCvEmpty": "Details to be confirmed — clippings and mentions coming soon."
+  },
+  "exhibitionsPage": {
+    "typeGroup": "Group",
+    "typeSolo": "Solo",
+    "provisionalNote": "Provisional entry — pending confirmation with the artist."
+  },
+  "pressPage": {
+    "bioShortTitle": "Short bio",
+    "bioShort": "Enya Fontanills (Cuba/Miami) is a contemporary painter and installation artist. Her work explores migratory memory, water, and the oneiric through painting, object, and installation.",
+    "bioMediumTitle": "Medium bio",
+    "bioMedium": "Enya Fontanills is a Cuban-American visual artist trained in Miami, San Francisco, and Rome. Her practice combines surrealist painting and installation to address journey, memory, and belonging. She has developed a language where the domestic becomes relic and water functions as a metaphor for separation and union.",
+    "bioLongTitle": "Long bio",
+    "bioLong": "Enya Fontanills builds a visual archive of the contemporary migratory experience. Born in Cuba and trained across Miami, San Francisco, and Rome, her work combines painting, object, and installation with an oneiric, precise sensibility. Starting from almost cinematic visions, she transforms tables, glasses, bodies, and fragments of glass into scenes where the intimate becomes political and poetic. Her work has been presented in studio and archive contexts as she prepares for gallery circuits across the Miami–Spain axis.",
+    "downloadsTitle": "Downloads",
+    "downloadCv": "CV (PDF)",
+    "downloadStatement": "Artist statement (PDF)",
+    "downloadPhotos": "Hi-res images",
+    "comingSoon": "Available soon",
+    "contactTitle": "Professional contact",
+    "contactText": "For press, galleries, and institutional collaborations:"
+  },
+  "privacyPage": {
+    "updated": "Last updated: July 2026",
+    "intro": "Enya Fontanills is the data controller for personal data collected through enyarte.com under the General Data Protection Regulation (GDPR).",
+    "controllerTitle": "Controller",
+    "controllerText": "Enya Fontanills · {email}",
+    "formsTitle": "Contact and commission forms",
+    "formsText": "Purpose: to respond to inquiries, manage private commissions, and professional communications. Legal basis: data subject consent and legitimate interest in handling requests. Data is sent to Web3Forms as a processor to deliver messages by email. Data is not shared with third parties for commercial purposes.",
+    "newsletterTitle": "Newsletter (future)",
+    "newsletterText": "If a newsletter is activated in the future, explicit consent will be requested and you may unsubscribe at any time.",
+    "analyticsTitle": "Analytics",
+    "analyticsText": "The site may use Cloudflare Web Analytics, a cookieless service providing aggregated traffic metrics. No advertising tracking cookies are used.",
+    "rightsTitle": "Your rights",
+    "rightsText": "You may access, rectify, erase, restrict, or object to processing by writing to {email}. You may also lodge a complaint with the competent supervisory authority.",
+    "retentionTitle": "Retention",
+    "retentionText": "Messages are kept as long as necessary to manage the professional relationship and applicable legal obligations."
   }
 }

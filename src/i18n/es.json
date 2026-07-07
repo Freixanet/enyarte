@@ -113,6 +113,10 @@
     "notFound": {
       "title": "Página no encontrada",
       "description": "La página que buscas no existe. Explora el catálogo de obras de Enya Fontanills."
+    },
+    "thankYou": {
+      "title": "Gracias",
+      "description": "Confirmación de envío. Enya Fontanills responde en menos de 48 horas."
     }
   },
   "pages": {
@@ -126,36 +130,143 @@
     },
     "commissions": {
       "heading": "Encargos",
-      "intro": "Encargos privados desde la visión hasta la obra terminada. Contenido completo en la siguiente fase."
+      "intro": "Un encargo privado es una conversación entre tu visión y mi lenguaje pictórico. Trabajo contigo desde la primera escena hasta la entrega de la pieza original."
     },
     "about": {
       "heading": "About",
-      "intro": "Biografía narrativa, mapa migratorio y statement. Contenido completo en la siguiente fase."
+      "intro": "Nacida en Cuba y formada entre Miami, San Francisco y Roma, Enya Fontanills construye un universo pictórico donde la memoria migratoria, el agua y lo onírico conviven en la misma superficie. Su obra mezcla pintura, objeto e instalación con una sensibilidad íntima y surrealista."
     },
     "exhibitions": {
       "heading": "Exposiciones",
-      "intro": "Cronología de exposiciones pasadas y próximas. Contenido completo en la siguiente fase."
+      "intro": "Cronología de exposiciones pasadas y próximas."
     },
     "press": {
       "heading": "Prensa",
-      "intro": "Press kit con biografías, descargas e imágenes. Contenido completo en la siguiente fase."
+      "intro": "Press kit para galerías, medios y curadores."
     },
     "contact": {
       "heading": "Contacto",
-      "intro": "Email directo y formulario para prensa, galerías y consultas generales."
+      "intro": "Consultas generales, prensa y galerías."
     },
     "purchaseFaq": {
       "heading": "FAQ compra",
-      "intro": "Envío, certificado, devoluciones y pagos. Contenido completo en la siguiente fase."
+      "intro": "Información sobre compra, envío y devoluciones."
     },
     "privacy": {
       "heading": "Privacidad",
-      "intro": "Política de privacidad y tratamiento de datos. Contenido completo en la siguiente fase."
+      "intro": "Enya Fontanills es responsable del tratamiento de los datos personales recogidos a través de enyarte.com conforme al Reglamento General de Protección de Datos (RGPD)."
     },
     "notFound": {
       "heading": "Página no encontrada",
       "intro": "Esta página no existe o ha sido movida.",
       "linkWorks": "Ver obras disponibles"
+    },
+    "thankYou": {
+      "heading": "Gracias",
+      "message": "Gracias — respondo en menos de 48 h.",
+      "backHome": "Volver al inicio"
     }
+  },
+  "forms": {
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "vision": "¿Qué tienes en mente?",
+    "budget": "Presupuesto orientativo",
+    "timeline": "Plazo deseado",
+    "submitContact": "Enviar mensaje",
+    "submitCommission": "Solicitar encargo",
+    "budgetUnder1000": "Menos de 1.000 €",
+    "budgetMid": "1.000–2.500 €",
+    "budgetOver2500": "Más de 2.500 €",
+    "timelineFlexible": "Sin prisa",
+    "timelineMid": "3–6 meses",
+    "timelineUrgent": "Menos de 3 meses",
+    "inspiredBy": "Inspirado en: {title}",
+    "honeypotLabel": "No rellenar"
+  },
+  "thankYou": {
+    "heading": "Gracias",
+    "message": "Gracias — respondo en menos de 48 h.",
+    "backHome": "Volver al inicio"
+  },
+  "commissionsPage": {
+    "intro": "Un encargo privado es una conversación entre tu visión y mi lenguaje pictórico. Trabajo contigo desde la primera escena hasta la entrega de la pieza original.",
+    "processTitle": "Proceso",
+    "step1Title": "Visión",
+    "step1Text": "Compartes la idea, el espacio donde vivirá la obra y lo que quieres que evoque. Yo escucho y hago preguntas hasta que la escena se aclara.",
+    "step2Title": "Boceto",
+    "step2Text": "Desarrollo bocetos y referencias visuales para alinear composición, escala y atmósfera antes de tocar el soporte definitivo.",
+    "step3Title": "Obra",
+    "step3Text": "Pinto o construyo la pieza en mi estudio, con actualizaciones en hitos clave. Al finalizar, coordinamos envío o entrega e incluyo certificado de autenticidad.",
+    "fromPrice": "Desde 900 € según formato",
+    "typicalTimeline": "Plazo típico: 8–12 semanas",
+    "casesTitle": "Encargos recientes",
+    "casesPlaceholder": "Próximamente: casos documentados con imágenes del proceso."
+  },
+  "faqPage": {
+    "shippingQuestion": "¿Hacéis envíos internacionales?",
+    "shippingAnswer": "Sí. Enviamos con seguro a España, UE y USA. Los plazos orientativos son de 5–10 días laborables dentro de la UE y de 10–20 días laborables a USA, según destino y aduanas.",
+    "certificateQuestion": "¿Incluye certificado de autenticidad?",
+    "certificateAnswer": "Toda obra original incluye certificado firmado con título, año, técnica y datos de la pieza.",
+    "returnsQuestion": "¿Puedo devolver la obra?",
+    "returnsAnswer": "Dispones de 14 días desde la recepción para solicitar devolución si la pieza no coincide con lo acordado. La obra debe devolverse en las mismas condiciones y embalaje.",
+    "paymentQuestion": "¿Qué formas de pago aceptáis?",
+    "paymentAnswer": "Transferencia bancaria o enlace de pago con tarjeta. Para obras reservadas, acordamos un calendario de pagos parciales.",
+    "framingQuestion": "¿Ofrecéis enmarcado?",
+    "framingAnswer": "Puedo recomendar enmarcadores de confianza en España o USA. El enmarcado no está incluido salvo acuerdo expreso.",
+    "customsQuestion": "¿Cómo funcionan aduanas e impuestos?",
+    "customsAnswer": "En envíos internacionales, especialmente entre Miami y España, los impuestos de importación corren a cargo del comprador según el país de destino. Te facilito documentación para aduanas."
+  },
+  "aboutPage": {
+    "bio1": "Nacida en Cuba y formada entre Miami, San Francisco y Roma, Enya Fontanills construye un universo pictórico donde la memoria migratoria, el agua y lo onírico conviven en la misma superficie. Su obra mezcla pintura, objeto e instalación con una sensibilidad íntima y surrealista.",
+    "bio2": "Su trayectoria atraviesa el Atlántico como quien cruza un espejo: cada ciudad deja una capa de color, una textura, una pregunta sobre lo que se deja atrás y lo que se trae a la mesa. Hoy vive y trabaja entre España y Miami, con un archivo en constante movimiento.",
+    "statementTitle": "Artist statement",
+    "statement": "La obra siempre empieza igual: una escena me llega como una visión. No como idea abstracta, sino como imagen completa — con luz, temperatura, silencio. La memoria y el deseo se superponen hasta que aparece una figura, un objeto, una grieta en lo cotidiano.\n\nPinto desde ese instante. El agua aparece una y otra vez porque es frontera y puente: separa Cuba de Miami, une lo íntimo con lo colectivo, sostiene cuerpos que cruzan sin mapa. Uso el color como temperatura emocional y el objeto como reliquia doméstica — un vaso, una mesa, un fragmento de vidrio — para hablar de lo que sobrevive al exilio.\n\nNo busco ilustrar la historia; busco hacerla visible en un umbral. Cada pieza es una travesía detenida en un fotograma: lo que se trae a la mesa, lo que se rompe, lo que aún puede llenarse.",
+    "cvTitle": "CV",
+    "educationTitle": "Formación",
+    "education1": "New World School of the Arts, Miami",
+    "education2": "MFA, California College of the Arts, San Francisco",
+    "education3": "Master in Art & Cultural Management, Rome Business School",
+    "exhibitionsCvTitle": "Exposiciones seleccionadas",
+    "exhibitionsCvEmpty": "Datos por confirmar — próxima actualización con el archivo completo.",
+    "pressCvTitle": "Prensa",
+    "pressCvEmpty": "Datos por confirmar — próxima actualización con recortes y menciones."
+  },
+  "exhibitionsPage": {
+    "typeGroup": "Colectiva",
+    "typeSolo": "Individual",
+    "provisionalNote": "Entrada provisional — pendiente de confirmación con la artista."
+  },
+  "pressPage": {
+    "bioShortTitle": "Bio corta",
+    "bioShort": "Enya Fontanills (Cuba/Miami) es pintora e instalacionista contemporánea. Su obra explora la memoria migratoria, el agua y lo onírico mediante pintura, objeto e instalación.",
+    "bioMediumTitle": "Bio media",
+    "bioMedium": "Enya Fontanills es una artista visual cubano-estadounidense con formación en Miami, San Francisco y Roma. Su práctica une pintura surrealista e instalación para hablar de travesía, memoria y pertenencia. Ha desarrollado un lenguaje donde lo doméstico se convierte en reliquia y el agua funciona como metáfora de separación y unión.",
+    "bioLongTitle": "Bio larga",
+    "bioLong": "Enya Fontanills construye un archivo visual de la experiencia migratoria contemporánea. Nacida en Cuba y formada entre Miami, San Francisco y Roma, su obra combina pintura, objeto e instalación con una sensibilidad onírica y precisa. Partiendo de visiones casi cinematográficas, transforma mesas, vasos, cuerpos y fragmentos de vidrio en escenas donde lo íntimo se vuelve político y poético. Su trabajo ha sido presentado en contextos de estudio y archivo en preparación para circuitos de galería en el eje Miami–España.",
+    "downloadsTitle": "Descargas",
+    "downloadCv": "CV (PDF)",
+    "downloadStatement": "Artist statement (PDF)",
+    "downloadPhotos": "Imágenes hi-res",
+    "comingSoon": "Disponible próximamente",
+    "contactTitle": "Contacto profesional",
+    "contactText": "Para prensa, galerías y colaboraciones institucionales:"
+  },
+  "privacyPage": {
+    "updated": "Última actualización: julio 2026",
+    "intro": "Enya Fontanills es responsable del tratamiento de los datos personales recogidos a través de enyarte.com conforme al Reglamento General de Protección de Datos (RGPD).",
+    "controllerTitle": "Responsable",
+    "controllerText": "Enya Fontanills · {email}",
+    "formsTitle": "Formularios de contacto y encargos",
+    "formsText": "Finalidad: responder consultas, gestionar encargos privados y comunicaciones profesionales. Base legal: consentimiento del interesado e interés legítimo en atender solicitudes. Los datos se envían a Web3Forms como encargado del tratamiento para la entrega del mensaje por email. No se ceden a terceros con fines comerciales.",
+    "newsletterTitle": "Newsletter (futuro)",
+    "newsletterText": "Si en el futuro se activa un newsletter, se solicitará consentimiento explícito y podrás darte de baja en cualquier momento.",
+    "analyticsTitle": "Analítica",
+    "analyticsText": "El sitio puede usar Cloudflare Web Analytics, un servicio sin cookies que proporciona métricas agregadas de tráfico. No se utilizan cookies de seguimiento publicitario.",
+    "rightsTitle": "Tus derechos",
+    "rightsText": "Puedes acceder, rectificar, suprimir, limitar u oponerte al tratamiento escribiendo a {email}. También puedes presentar reclamación ante la autoridad de control competente.",
+    "retentionTitle": "Conservación",
+    "retentionText": "Los mensajes se conservan el tiempo necesario para gestionar la relación profesional y obligaciones legales aplicables."
   }
 }
