@@ -10,10 +10,17 @@ interface Props {
 
 const { locale, refMap } = Astro.props;
 const redirect = absoluteUrl(pathFor('thankYou', locale));
+const redirectPath = pathFor('thankYou', locale);
 const inspiredTemplate = t('forms.inspiredBy', locale);
 ---
 
-<form class="form" id="commission-form" action={WEB3FORMS_ENDPOINT} method="POST">
+<form
+  class="form"
+  id="commission-form"
+  action={WEB3FORMS_ENDPOINT}
+  method="POST"
+  data-redirect-path={redirectPath}
+>
   <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
   <input type="hidden" name="redirect" value={redirect} />
   <input type="hidden" name="subject" value={t('meta.commissions.title', locale)} />
@@ -54,6 +61,15 @@ const inspiredTemplate = t('forms.inspiredBy', locale);
   </div>
   <button class="form__submit" type="submit">{t('forms.submitCommission', locale)}</button>
 </form>
+
+<script>
+  import { initWeb3Form } from '../scripts/web3forms';
+
+  const form = document.getElementById('commission-form');
+  if (form instanceof HTMLFormElement && form.dataset.redirectPath) {
+    initWeb3Form(form, form.dataset.redirectPath);
+  }
+</script>
 
 <script define:vars={{ refMap, inspiredTemplate }}>
   const ref = new URLSearchParams(window.location.search).get('ref');
