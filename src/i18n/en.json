@@ -1,0 +1,125 @@
+{
+  "site": {
+    "name": "Enya Fontanills",
+    "artistName": "Enya Fontanills",
+    "copyright": "© {year} Enya Fontanills. All rights reserved."
+  },
+  "nav": {
+    "works": "Works",
+    "commissions": "Commissions",
+    "about": "About",
+    "contact": "Contact",
+    "home": "Home",
+    "openMenu": "Open menu",
+    "langToEn": "EN",
+    "langToEs": "ES"
+  },
+  "footer": {
+    "exhibitions": "Exhibitions",
+    "press": "Press",
+    "purchaseFaq": "Purchase FAQ",
+    "privacy": "Privacy",
+    "instagram": "Instagram",
+    "instagramHandle": "@enya.arte"
+  },
+  "status": {
+    "available": "Available",
+    "reserved": "Reserved",
+    "sold": "Private collection"
+  },
+  "trust": {
+    "certificate": "Signed certificate of authenticity",
+    "shipping": "Insured international shipping (Spain/EU/USA)",
+    "returns": "14-day returns",
+    "payment": "Secure payment (bank transfer / card via Stripe link)",
+    "linkLabel": "More about purchasing"
+  },
+  "meta": {
+    "home": {
+      "title": "Home",
+      "description": "Enya Fontanills — contemporary surrealist painter and installation artist. Original works, private commissions, and archive across Cuba, Miami, and Spain."
+    },
+    "works": {
+      "title": "Works",
+      "description": "Catalogue of paintings, objects, and installations by Enya Fontanills. Available, reserved, and private collection works."
+    },
+    "work": {
+      "description": "Artwork by Enya Fontanills."
+    },
+    "commissions": {
+      "title": "Commissions",
+      "description": "Private commissions with Enya Fontanills: from concept to finished original, with a transparent process and clear timelines."
+    },
+    "about": {
+      "title": "About",
+      "description": "Biography, statement, and journey of Enya Fontanills — a creative crossing between Cuba, Miami, San Francisco, Rome, and Spain."
+    },
+    "exhibitions": {
+      "title": "Exhibitions",
+      "description": "Past and upcoming exhibitions by Enya Fontanills in galleries and international spaces."
+    },
+    "press": {
+      "title": "Press",
+      "description": "Press kit for Enya Fontanills: bios, statement, hi-res images, and contact for galleries and media."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact for press, galleries, and general inquiries about Enya Fontanills's work."
+    },
+    "purchaseFaq": {
+      "title": "Purchase FAQ",
+      "description": "International shipping, certificate of authenticity, returns, payments, and customs for buyers in Spain, EU, and USA."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "Privacy policy and data protection for enyarte.com under GDPR."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist. Explore Enya Fontanills's catalogue."
+    }
+  },
+  "pages": {
+    "home": {
+      "heading": "Enya Fontanills",
+      "intro": "Contemporary surrealist painting and installation. The water that separates and unites."
+    },
+    "works": {
+      "heading": "Works",
+      "intro": "Catalogue under construction. Filterable grid with all pieces coming soon."
+    },
+    "commissions": {
+      "heading": "Commissions",
+      "intro": "Private commissions from vision to finished work. Full content in the next phase."
+    },
+    "about": {
+      "heading": "About",
+      "intro": "Narrative biography, migratory map, and statement. Full content in the next phase."
+    },
+    "exhibitions": {
+      "heading": "Exhibitions",
+      "intro": "Timeline of past and upcoming exhibitions. Full content in the next phase."
+    },
+    "press": {
+      "heading": "Press",
+      "intro": "Press kit with bios, downloads, and images. Full content in the next phase."
+    },
+    "contact": {
+      "heading": "Contact",
+      "intro": "Direct email and form for press, galleries, and general inquiries."
+    },
+    "purchaseFaq": {
+      "heading": "Purchase FAQ",
+      "intro": "Shipping, certificate, returns, and payments. Full content in the next phase."
+    },
+    "privacy": {
+      "heading": "Privacy",
+      "intro": "Privacy policy and data handling. Full content in the next phase."
+    },
+    "notFound": {
+      "heading": "Page not found",
+      "intro": "This page does not exist or has been moved.",
+      "linkWorks": "View available works"
+    }
+  }
+}

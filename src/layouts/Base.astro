@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+import '../styles/motion.css';
+import type { Locale, PageKey } from '../i18n';
+import {
+  absoluteUrl,
+  buildTitle,
+  hreflangLinks,
+  t,
+} from '../i18n';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  locale: Locale;
+  pageKey: PageKey;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  slug?: string;
+}
+
+const { locale, pageKey, title, description, ogImage, slug } = Astro.props;
+
+const canonicalPath = Astro.url.pathname;
+const pageTitle = buildTitle(pageKey, locale, title);
+const pageDescription = description ?? t(`meta.${pageKey}.description`, locale);
+const ogImageUrl = ogImage ?? absoluteUrl('/favicon.svg');
+const canonicalUrl = absoluteUrl(canonicalPath);
+const alternates = hreflangLinks(canonicalPath, slug);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Enya Fontanills',
+  jobTitle: 'Visual Artist',
+  sameAs: ['https://instagram.com/enya.arte'],
+};
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((link) => (
+      <link rel="alternate" hreflang={link.lang} href={link.href} />
+    ))}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={locale === 'es' ? 'es_ES' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <slot name="head" />
+  </head>
+  <body>
+    <Nav locale={locale} currentPath={canonicalPath} slug={slug} />
+    <main class="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>
+
+<style is:global>
+  .main {
+    min-height: 100vh;
+    padding-top: var(--sp-7);
+    padding-bottom: var(--sp-6);
+  }
+
+  .page {
+    width: min(100% - var(--sp-4) * 2, var(--maxw));
+    margin-inline: auto;
+    padding-inline: var(--sp-4);
+  }
+
+  .page__heading {
+    font-family: var(--f-display);
+    font-size: var(--fs-h1);
+    line-height: var(--lh-tight);
+    font-weight: 400;
+    color: var(--c-ink);
+    margin-bottom: var(--sp-4);
+  }
+
+  .page__intro {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+import type { Locale } from '../i18n';
+import { alternatePath, navLinks, pathFor, t } from '../i18n';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+  slug?: string;
+}
+
+const { locale, currentPath, slug } = Astro.props;
+const links = navLinks(locale);
+const homeHref = pathFor('home', locale);
+const switchHref = alternatePath(currentPath, slug);
+const switchLabel = locale === 'es' ? t('nav.langToEn', locale) : t('nav.langToEs', locale);
+---
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href={homeHref}>{t('site.artistName', locale)}</a>
+    <nav class="nav__links" aria-label={t('nav.home', locale)}>
+      {links.map((link) => (
+        <a
+          class:list={['nav__link', { 'nav__link--active': currentPath === link.href || currentPath.startsWith(`${link.href}/`) }]}
+          href={link.href}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    <LangSwitch href={switchHref} label={switchLabel} locale={locale} />
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 100;
+    background-color: var(--c-bone);
+    border-block-end: 1px solid var(--c-line);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    width: min(100% - var(--sp-4) * 2, var(--maxw));
+    margin-inline: auto;
+    padding: var(--sp-3) var(--sp-4);
+  }
+
+  .nav__brand {
+    font-family: var(--f-display);
+    font-size: var(--fs-body);
+    color: var(--c-ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    justify-content: center;
+  }
+
+  .nav__link {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .nav__link--active,
+  .nav__link:hover,
+  .nav__link:focus-visible {
+    color: var(--c-ink);
+  }
+</style>

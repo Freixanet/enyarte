@@ -1,0 +1,125 @@
+{
+  "site": {
+    "name": "Enya Fontanills",
+    "artistName": "Enya Fontanills",
+    "copyright": "© {year} Enya Fontanills. Todos los derechos reservados."
+  },
+  "nav": {
+    "works": "Obras",
+    "commissions": "Encargos",
+    "about": "About",
+    "contact": "Contacto",
+    "home": "Inicio",
+    "openMenu": "Abrir menú",
+    "langToEn": "EN",
+    "langToEs": "ES"
+  },
+  "footer": {
+    "exhibitions": "Exposiciones",
+    "press": "Prensa",
+    "purchaseFaq": "FAQ compra",
+    "privacy": "Privacidad",
+    "instagram": "Instagram",
+    "instagramHandle": "@enya.arte"
+  },
+  "status": {
+    "available": "Disponible",
+    "reserved": "Reservada",
+    "sold": "Colección privada"
+  },
+  "trust": {
+    "certificate": "Certificado de autenticidad firmado",
+    "shipping": "Envío internacional asegurado (España/EU/USA)",
+    "returns": "Devolución 14 días",
+    "payment": "Pago seguro (transferencia / tarjeta vía enlace Stripe)",
+    "linkLabel": "Más información sobre la compra"
+  },
+  "meta": {
+    "home": {
+      "title": "Inicio",
+      "description": "Enya Fontanills — pintora surrealista contemporánea e instalacionista. Obra original, encargos privados y archivo entre Cuba, Miami y España."
+    },
+    "works": {
+      "title": "Obras",
+      "description": "Catálogo de pinturas, objetos e instalaciones de Enya Fontanills. Obras disponibles, reservadas y de colección privada."
+    },
+    "work": {
+      "description": "Ficha de obra de Enya Fontanills."
+    },
+    "commissions": {
+      "title": "Encargos",
+      "description": "Encargos privados con Enya Fontanills: del concepto a la obra original, con proceso transparente y plazos claros."
+    },
+    "about": {
+      "title": "About",
+      "description": "Biografía, statement y trayectoria de Enya Fontanills — una travesía creativa entre Cuba, Miami, San Francisco, Roma y España."
+    },
+    "exhibitions": {
+      "title": "Exposiciones",
+      "description": "Exposiciones pasadas y próximas de Enya Fontanills en galerías y espacios internacionales."
+    },
+    "press": {
+      "title": "Prensa",
+      "description": "Press kit de Enya Fontanills: biografías, statement, imágenes hi-res y contacto para galerías y medios."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Contacto para prensa, galerías y consultas generales sobre la obra de Enya Fontanills."
+    },
+    "purchaseFaq": {
+      "title": "FAQ compra",
+      "description": "Envío internacional, certificado de autenticidad, devoluciones, pagos y aduanas para compradores en España, EU y USA."
+    },
+    "privacy": {
+      "title": "Privacidad",
+      "description": "Política de privacidad y protección de datos de enyarte.com conforme al RGPD."
+    },
+    "notFound": {
+      "title": "Página no encontrada",
+      "description": "La página que buscas no existe. Explora el catálogo de obras de Enya Fontanills."
+    }
+  },
+  "pages": {
+    "home": {
+      "heading": "Enya Fontanills",
+      "intro": "Pintura surrealista contemporánea e instalación. El agua que separa y une."
+    },
+    "works": {
+      "heading": "Obras",
+      "intro": "Catálogo en construcción. Próximamente grid filtrable con todas las piezas."
+    },
+    "commissions": {
+      "heading": "Encargos",
+      "intro": "Encargos privados desde la visión hasta la obra terminada. Contenido completo en la siguiente fase."
+    },
+    "about": {
+      "heading": "About",
+      "intro": "Biografía narrativa, mapa migratorio y statement. Contenido completo en la siguiente fase."
+    },
+    "exhibitions": {
+      "heading": "Exposiciones",
+      "intro": "Cronología de exposiciones pasadas y próximas. Contenido completo en la siguiente fase."
+    },
+    "press": {
+      "heading": "Prensa",
+      "intro": "Press kit con biografías, descargas e imágenes. Contenido completo en la siguiente fase."
+    },
+    "contact": {
+      "heading": "Contacto",
+      "intro": "Email directo y formulario para prensa, galerías y consultas generales."
+    },
+    "purchaseFaq": {
+      "heading": "FAQ compra",
+      "intro": "Envío, certificado, devoluciones y pagos. Contenido completo en la siguiente fase."
+    },
+    "privacy": {
+      "heading": "Privacidad",
+      "intro": "Política de privacidad y tratamiento de datos. Contenido completo en la siguiente fase."
+    },
+    "notFound": {
+      "heading": "Página no encontrada",
+      "intro": "Esta página no existe o ha sido movida.",
+      "linkWorks": "Ver obras disponibles"
+    }
+  }
+}

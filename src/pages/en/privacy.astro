@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n';
+
+const locale = 'en';
+---
+
+<Base locale={locale} pageKey="privacy">
+  <div class="page">
+    <h1 class="page__heading">{t('pages.privacy.heading', locale)}</h1>
+    <p class="page__intro">{t('pages.privacy.intro', locale)}</p>
+  </div>
+</Base>

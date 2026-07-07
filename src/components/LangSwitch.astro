@@ -1,0 +1,36 @@
+---
+import type { Locale } from '../i18n';
+
+interface Props {
+  href: string;
+  label: string;
+  locale: Locale;
+}
+
+const { href, label, locale } = Astro.props;
+const langTarget = locale === 'es' ? 'en' : 'es';
+---
+
+<a class="lang-switch" href={href} hreflang={langTarget} lang={langTarget} rel="alternate">
+  {label}
+</a>
+
+<style>
+  .lang-switch {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink);
+    text-decoration: none;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    padding: var(--sp-1) var(--sp-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-switch:hover,
+  .lang-switch:focus-visible {
+    border-color: var(--c-ink-2);
+    color: var(--c-cta);
+  }
+</style>

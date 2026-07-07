@@ -1,0 +1,77 @@
+---
+import type { Locale } from '../i18n';
+import { footerLinks, pathFor, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const links = footerLinks(locale);
+const year = new Date().getFullYear();
+const copyright = t('site.copyright', locale).replace('{year}', String(year));
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <nav class="footer__links" aria-label={t('footer.privacy', locale)}>
+      {links.map((link) => (
+        <a class="footer__link" href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <a
+      class="footer__social"
+      href="https://instagram.com/enya.arte"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      {t('footer.instagram', locale)} · {t('footer.instagramHandle', locale)}
+    </a>
+    <p class="footer__copy">{copyright}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-block-start: 1px solid var(--c-line);
+    background-color: var(--c-paper);
+    padding-block: var(--sp-5);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    width: min(100% - var(--sp-4) * 2, var(--maxw));
+    margin-inline: auto;
+    padding-inline: var(--sp-4);
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+
+  .footer__link,
+  .footer__social {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+    text-decoration: none;
+  }
+
+  .footer__link:hover,
+  .footer__link:focus-visible,
+  .footer__social:hover,
+  .footer__social:focus-visible {
+    color: var(--c-ink);
+  }
+
+  .footer__copy {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+    line-height: var(--lh-body);
+  }
+</style>
