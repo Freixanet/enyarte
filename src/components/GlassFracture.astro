@@ -6,7 +6,7 @@
 ---
 
 <div class="glass-fracture" aria-hidden="true">
-  <svg class="glass-fracture__svg" viewBox="0 0 100 125" preserveAspectRatio="none" focusable="false">
+  <svg class="glass-fracture__svg" viewBox="0 0 100 125" focusable="false">
     <path class="glass-fracture__path" pathLength="1" d="M0 0 L34 22 L23 55" />
     <path class="glass-fracture__path" pathLength="1" d="M0 0 L15 41" />
     <path class="glass-fracture__path" pathLength="1" d="M34 22 L62 31" />
@@ -28,11 +28,17 @@
     height: 100%;
   }
 
+  /* pathLength="1" normaliza cada trazo a longitud 1: dasharray/offset 1 lo
+     oculta por completo en reposo y se "dibuja" al llevar offset a 0. No se usa
+     non-scaling-stroke porque forzaría el patrón a px de pantalla y rompería la
+     normalización (trazo visible en reposo). El viewBox 100×125 ya coincide con
+     el aspect 4/5 del marco, así el escalado es uniforme y el stroke queda ~1px. */
   .glass-fracture__path {
     fill: none;
     stroke: var(--c-line);
-    stroke-width: 1;
-    vector-effect: non-scaling-stroke;
+    stroke-width: 0.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
     transition: stroke-dashoffset var(--dur-el) var(--ease-fn);
