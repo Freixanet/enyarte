@@ -1,13 +1,67 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
-import { t } from '../../../i18n';
+import CtaButton from '../../../components/CtaButton.astro';
+import WorkCard from '../../../components/WorkCard.astro';
+import WorkFilters from '../../../components/WorkFilters.astro';
+import { pathFor, t } from '../../../i18n';
 
 const locale = 'en';
+const works = (await getCollection('works')).sort(
+  (a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.order - b.data.order,
+);
 ---
 
 <Base locale={locale} pageKey="works">
   <div class="page">
     <h1 class="page__heading">{t('pages.works.heading', locale)}</h1>
-    <p class="page__intro">{t('pages.works.intro', locale)}</p>
+    <WorkFilters locale={locale} basePath={pathFor('works', locale)} />
+    <ul class="works-grid">
+      {works.map((work) => <WorkCard work={work} locale={locale} />)}
+    </ul>
+    <div class="works-empty" data-filter-empty hidden>
+      <p class="works-empty__text">{t('filters.empty', locale)}</p>
+      <CtaButton variant="secondary" href={pathFor('commissions', locale)}>
+        {t('filters.emptyCta', locale)}
+      </CtaButton>
+    </div>
   </div>
 </Base>
+
+<style>
+  .works-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+
+  @media (min-width: 48rem) {
+    .works-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .works-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .works-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    padding-block: var(--sp-6);
+  }
+
+  .works-empty__text {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+  }
+</style>

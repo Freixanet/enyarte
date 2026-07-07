@@ -1,8 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { t } from '../../i18n';
+import CtaButton from '../../components/CtaButton.astro';
+import ScaleVisualizer from '../../components/ScaleVisualizer.astro';
+import TrustBlock from '../../components/TrustBlock.astro';
+import { CONTACT_EMAIL } from '../../config';
+import { pathFor, t } from '../../i18n';
 
 export async function getStaticPaths() {
   const works = await getCollection('works');
@@ -14,7 +18,29 @@ export async function getStaticPaths() {
 
 const locale = 'es';
 const { work } = Astro.props;
-const workTitle = `${work.data.title} (${work.data.year})`;
+const data = work.data;
+const numberLocale = 'es-ES';
+const formatNumber = (value: number) => value.toLocaleString(numberLocale);
+
+const price = data.price_eur === null ? null : formatNumber(data.price_eur);
+const dimensions =
+  data.width_cm !== null && data.height_cm !== null
+    ? `${[data.height_cm, data.width_cm, ...(data.depth_cm != null ? [data.depth_cm] : [])]
+        .map(formatNumber)
+        .join(' × ')} cm`
+    : null;
+
+const fill = (key: string) =>
+  t(key, locale)
+    .replace('{title}', data.title)
+    .replace('{year}', String(data.year))
+    .replace('{price}', price ?? '');
+
+const mailto = (subjectKey: string, bodyKey: string) =>
+  `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(fill(subjectKey))}&body=${encodeURIComponent(fill(bodyKey))}`;
+
+const fullImage = await getImage({ src: data.cover, width: 1600 });
+const workTitle = `${data.title} (${data.year})`;
 ---
 
 <Base
@@ -25,34 +51,280 @@ const workTitle = `${work.data.title} (${work.data.year})`;
   slug={work.slug}
 >
   <article class="page work">
-    <h1 class="work__title">{work.data.title}</h1>
-    <p class="work__year">{work.data.year}</p>
-    <p class="work__technique">{work.data.technique_es}</p>
-    <Image class="work__cover" src={work.data.cover} alt={work.data.title} />
+    <a class="work__back" href={pathFor('works', locale)}>{t('work.back', locale)}</a>
+    <div class="work__layout">
+      <div class="work__media">
+        <button class="work__zoom" type="button" data-lightbox-open aria-label={fill('work.openZoom')}>
+          <Image
+            class="work__cover"
+            src={data.cover}
+            alt={data.title}
+            widths={[400, 800, 1200, 1600]}
+            sizes="(min-width: 64rem) 55vw, 100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </button>
+        {data.gallery.length > 0 && (
+          <ul class="work__gallery">
+            {data.gallery.map((item) => (
+              <li>
+                <Image src={item} alt={data.title} widths={[400, 800]} sizes="33vw" loading="lazy" />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div class="work__info">
+        <h1 class="work__title">{data.title}</h1>
+        <p class="work__meta">{data.year}</p>
+        <p class="work__meta">{data.technique_es}</p>
+        {dimensions && <p class="work__meta">{dimensions}</p>}
+        <div class="work__commerce">
+          {price !== null && data.status !== 'sold' && <p class="work__price">{price} €</p>}
+          {data.status === 'reserved' && (
+            <p class="work__badge">{t('status.reserved', locale)}</p>
+          )}
+          {data.status === 'sold' && (
+            <p class="work__badge work__badge--sold">{t('status.sold', locale)}</p>
+          )}
+          {data.status === 'available' && (
+            <CtaButton variant="primary" href={mailto('work.mailtoAcquireSubject', 'work.mailtoAcquireBody')}>
+              {price !== null ? fill('work.acquire') : t('work.inquireAvailability', locale)}
+            </CtaButton>
+          )}
+          {data.status === 'reserved' && (
+            <CtaButton variant="secondary" href={mailto('work.mailtoNotifySubject', 'work.mailtoNotifyBody')}>
+              {t('work.notifyMe', locale)}
+            </CtaButton>
+          )}
+          {data.status === 'sold' && (
+            <CtaButton variant="secondary" href={`${pathFor('commissions', locale)}?ref=${work.slug}`}>
+              {t('work.commissionFromWork', locale)}
+            </CtaButton>
+          )}
+        </div>
+        <TrustBlock locale={locale} />
+        <ScaleVisualizer widthCm={data.width_cm} heightCm={data.height_cm} locale={locale} />
+        <p class="work__story">{data.story_es}</p>
+      </div>
+    </div>
   </article>
+
+  <dialog class="lightbox" data-lightbox>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label={t('work.closeZoom', locale)}>
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M3 3l10 10M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </button>
+    <div class="lightbox__scroll">
+      <img class="lightbox__img" src={fullImage.src} alt={data.title} data-lightbox-img />
+    </div>
+  </dialog>
 </Base>
 
+<script>
+  const dialog = document.querySelector('[data-lightbox]');
+  const openButton = document.querySelector('[data-lightbox-open]');
+  const closeButton = document.querySelector('[data-lightbox-close]');
+  const image = document.querySelector('[data-lightbox-img]');
+
+  if (dialog instanceof HTMLDialogElement) {
+    openButton?.addEventListener('click', () => dialog.showModal());
+    closeButton?.addEventListener('click', () => dialog.close());
+    image?.addEventListener('click', () => image.classList.toggle('is-zoomed'));
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => image?.classList.remove('is-zoomed'));
+  }
+</script>
+
 <style>
+  .work__back {
+    display: inline-block;
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+    text-decoration: none;
+    margin-block-end: var(--sp-4);
+  }
+
+  .work__back:hover,
+  .work__back:focus-visible {
+    color: var(--c-ink);
+  }
+
+  @media (min-width: 64rem) {
+    .work__layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: var(--sp-6);
+      align-items: start;
+    }
+  }
+
+  .work__zoom {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    border-radius: var(--radius);
+  }
+
+  .work__zoom:focus-visible {
+    outline: 2px solid var(--c-ink);
+    outline-offset: 2px;
+  }
+
+  .work__cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: var(--c-paper);
+    border-radius: var(--radius);
+  }
+
+  .work__gallery {
+    list-style: none;
+    margin: var(--sp-3) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-2);
+  }
+
+  .work__info {
+    margin-block-start: var(--sp-5);
+  }
+
+  @media (min-width: 64rem) {
+    .work__info {
+      margin-block-start: 0;
+    }
+  }
+
   .work__title {
     font-family: var(--f-display);
+    font-style: italic;
+    font-weight: 400;
     font-size: var(--fs-h1);
     line-height: var(--lh-tight);
     color: var(--c-ink);
-    margin-bottom: var(--sp-2);
+    margin-block-end: var(--sp-2);
   }
 
-  .work__year,
-  .work__technique {
+  .work__meta {
     font-family: var(--f-ui);
     font-size: var(--fs-body);
     line-height: var(--lh-body);
     color: var(--c-ink-2);
-    margin-bottom: var(--sp-2);
   }
 
-  .work__cover {
-    margin-top: var(--sp-4);
+  .work__commerce {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    margin-block-start: var(--sp-4);
+  }
+
+  .work__price {
+    font-family: var(--f-ui);
+    font-size: var(--fs-h2);
+    color: var(--c-ink);
+  }
+
+  .work__badge {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+  }
+
+  .work__badge--sold {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+  .work__badge--sold::before {
+    content: '';
+    width: var(--sp-2);
+    height: var(--sp-2);
+    border-radius: 50%;
+    background-color: var(--c-wine);
+  }
+
+  .work__story {
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink);
+  }
+
+  .lightbox {
+    padding: 0;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--c-bone);
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100%;
+    height: 100%;
+  }
+
+  .lightbox::backdrop {
+    background-color: color-mix(in srgb, var(--c-deep) 85%, transparent);
+  }
+
+  .lightbox__close {
+    position: fixed;
+    inset-block-start: var(--sp-3);
+    inset-inline-end: var(--sp-3);
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    background-color: var(--c-bone);
+    color: var(--c-ink);
+    cursor: pointer;
+  }
+
+  .lightbox__close svg {
+    width: var(--sp-3);
+    height: var(--sp-3);
+  }
+
+  .lightbox__close:focus-visible {
+    outline: 2px solid var(--c-ink);
+    outline-offset: 2px;
+  }
+
+  .lightbox__scroll {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: grid;
+    place-items: center;
+    padding: var(--sp-5);
+  }
+
+  .lightbox__img {
     max-width: 100%;
-    height: auto;
+    max-height: 100%;
+    touch-action: pinch-zoom;
+    cursor: zoom-in;
+    transition: transform var(--dur-el) var(--ease-fn);
+  }
+
+  .lightbox__img.is-zoomed {
+    transform: scale(2);
+    cursor: zoom-out;
   }
 </style>

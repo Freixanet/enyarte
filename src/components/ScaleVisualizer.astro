@@ -1,0 +1,91 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+
+interface Props {
+  widthCm: number | null;
+  heightCm: number | null;
+  locale: Locale;
+}
+
+const { widthCm, heightCm, locale } = Astro.props;
+const show = widthCm !== null && heightCm !== null;
+
+const HUMAN_H = 170;
+const HUMAN_W = 46;
+const GAP = 24;
+
+let viewBox = '';
+let workX = 0;
+let workY = 0;
+let humanY = 0;
+let baseline = 0;
+let caption = '';
+
+if (show) {
+  baseline = Math.max(HUMAN_H, heightCm);
+  viewBox = `0 0 ${HUMAN_W + GAP + widthCm} ${baseline + 2}`;
+  workX = HUMAN_W + GAP;
+  workY = baseline - heightCm;
+  humanY = baseline - HUMAN_H;
+
+  const numberLocale = locale === 'es' ? 'es-ES' : 'en-US';
+  const dims = `${heightCm.toLocaleString(numberLocale)} × ${widthCm.toLocaleString(numberLocale)} cm`;
+  caption = t('scale.caption', locale).replace('{dims}', dims);
+}
+---
+
+{show && (
+  <figure class="scale">
+    <svg viewBox={viewBox} role="img" aria-label={t('scale.title', locale)}>
+      <g transform={`translate(0 ${humanY})`} class="scale__human">
+        <circle cx="23" cy="13" r="12" />
+        <path d="M23 26 C33 26 37 36 37 52 L35 96 H30 L28.5 170 H24.5 L23 122 L21.5 170 H17.5 L16 96 H11 L9 52 C9 36 13 26 23 26 Z" />
+      </g>
+      <rect
+        class="scale__work"
+        x={workX}
+        y={workY}
+        width={widthCm}
+        height={heightCm}
+        vector-effect="non-scaling-stroke"
+      />
+      <line class="scale__floor" x1="0" y1={baseline} x2={HUMAN_W + GAP + (widthCm ?? 0)} y2={baseline} vector-effect="non-scaling-stroke" />
+    </svg>
+    <figcaption class="scale__caption">{caption}</figcaption>
+  </figure>
+)}
+
+<style>
+  .scale {
+    margin-block: var(--sp-5);
+  }
+
+  .scale svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .scale__human {
+    fill: var(--c-ink-2);
+  }
+
+  .scale__work {
+    fill: var(--c-paper);
+    stroke: var(--c-line);
+    stroke-width: 1;
+  }
+
+  .scale__floor {
+    stroke: var(--c-line);
+    stroke-width: 1;
+  }
+
+  .scale__caption {
+    margin-block-start: var(--sp-2);
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+  }
+</style>

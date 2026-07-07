@@ -34,6 +34,42 @@
     "payment": "Pago seguro (transferencia / tarjeta vía enlace Stripe)",
     "linkLabel": "Más información sobre la compra"
   },
+  "work": {
+    "back": "← Volver a obras",
+    "acquire": "Adquirir — {price}€",
+    "inquireAvailability": "Consultar disponibilidad",
+    "notifyMe": "Avisarme si se libera",
+    "commissionFromWork": "Encargo privado inspirado en esta obra",
+    "mailtoAcquireSubject": "Interés en adquirir: {title} ({year})",
+    "mailtoAcquireBody": "Hola Enya,\n\nMe interesa adquirir la obra \"{title}\" ({year}). ¿Podrías indicarme los siguientes pasos?\n\nGracias.",
+    "mailtoNotifySubject": "Aviso de disponibilidad: {title} ({year})",
+    "mailtoNotifyBody": "Hola Enya,\n\nMe gustaría recibir un aviso si la obra \"{title}\" ({year}) vuelve a estar disponible.\n\nGracias.",
+    "openZoom": "Ampliar imagen de {title}",
+    "closeZoom": "Cerrar"
+  },
+  "filters": {
+    "label": "Filtrar obras",
+    "availability": "Disponibilidad",
+    "technique": "Técnica",
+    "price": "Precio",
+    "size": "Tamaño",
+    "clear": "Mostrar todo",
+    "kindPainting": "Pintura",
+    "kindInstallation": "Instalación",
+    "kindObject": "Objeto",
+    "priceLow": "Menos de 1.000 €",
+    "priceMid": "1.000–2.000 €",
+    "priceHigh": "Más de 2.000 €",
+    "sizeSmall": "Pequeño (<50 cm)",
+    "sizeMedium": "Medio (50–120 cm)",
+    "sizeLarge": "Grande (>120 cm)",
+    "empty": "Ninguna obra coincide con los filtros seleccionados.",
+    "emptyCta": "Explorar encargos privados"
+  },
+  "scale": {
+    "title": "Visualización de escala",
+    "caption": "Escala: figura 170 cm · obra {dims}"
+  },
   "meta": {
     "home": {
       "title": "Inicio",

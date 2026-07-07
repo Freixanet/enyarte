@@ -1,0 +1,128 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n';
+import { pathFor, t } from '../i18n';
+
+interface Props {
+  work: CollectionEntry<'works'>;
+  locale: Locale;
+}
+
+const { work, locale } = Astro.props;
+const data = work.data;
+const href = `${pathFor('works', locale)}/${work.slug}`;
+
+const priceBucket =
+  data.price_eur === null ? 'none' : data.price_eur < 1000 ? 'low' : data.price_eur <= 2000 ? 'mid' : 'high';
+
+const maxSide = Math.max(data.width_cm ?? 0, data.height_cm ?? 0, data.depth_cm ?? 0);
+const sizeBucket = maxSide === 0 ? 'none' : maxSide < 50 ? 'small' : maxSide <= 120 ? 'medium' : 'large';
+
+const numberLocale = locale === 'es' ? 'es-ES' : 'en-US';
+const price =
+  data.status === 'available' && data.price_eur !== null
+    ? `${data.price_eur.toLocaleString(numberLocale)} €`
+    : null;
+---
+
+<li
+  class="work-card"
+  data-work
+  data-status={data.status}
+  data-kind={data.kind}
+  data-price={priceBucket}
+  data-size={sizeBucket}
+>
+  <a class="work-card__link" href={href}>
+    <div class="work-card__frame">
+      <Image
+        class="work-card__cover"
+        src={data.cover}
+        alt={data.title}
+        widths={[400, 800]}
+        sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw"
+        loading="lazy"
+      />
+    </div>
+    <div class="work-card__caption">
+      <h2 class="work-card__title">{data.title}</h2>
+      <p class="work-card__year">{data.year}</p>
+      {price && <p class="work-card__price">{price}</p>}
+      {data.status === 'reserved' && (
+        <p class="work-card__badge">{t('status.reserved', locale)}</p>
+      )}
+      {data.status === 'sold' && (
+        <p class="work-card__badge work-card__badge--sold">{t('status.sold', locale)}</p>
+      )}
+    </div>
+  </a>
+</li>
+
+<style>
+  .work-card__link {
+    display: block;
+    text-decoration: none;
+    color: var(--c-ink);
+  }
+
+  .work-card__frame {
+    aspect-ratio: 4 / 5;
+    background-color: var(--c-paper);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .work-card__cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .work-card__caption {
+    padding-block: var(--sp-3);
+  }
+
+  .work-card__title {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-tight);
+    color: var(--c-ink);
+    transition: color var(--dur-micro) var(--ease-fn);
+  }
+
+  .work-card__link:hover .work-card__title,
+  .work-card__link:focus-visible .work-card__title {
+    color: var(--c-cta);
+  }
+
+  .work-card__year,
+  .work-card__price,
+  .work-card__badge {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+  }
+
+  .work-card__price {
+    color: var(--c-ink);
+  }
+
+  .work-card__badge--sold {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+  .work-card__badge--sold::before {
+    content: '';
+    width: var(--sp-2);
+    height: var(--sp-2);
+    border-radius: 50%;
+    background-color: var(--c-wine);
+  }
+</style>

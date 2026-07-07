@@ -1,0 +1,62 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary';
+  href?: string;
+}
+
+const { variant = 'primary', href } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag class:list={['cta', `cta--${variant}`]} href={href} type={href ? undefined : 'button'}>
+  <slot />
+</Tag>
+
+<style>
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: var(--sp-2) var(--sp-4);
+    border-radius: var(--radius);
+    font-family: var(--f-ui);
+    font-size: var(--fs-body);
+    line-height: var(--lh-tight);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color var(--dur-micro) var(--ease-fn),
+      border-color var(--dur-micro) var(--ease-fn),
+      color var(--dur-micro) var(--ease-fn);
+  }
+
+  .cta--primary {
+    background-color: var(--c-cta);
+    border: 1px solid var(--c-cta);
+    color: var(--c-bone);
+  }
+
+  .cta--primary:hover,
+  .cta--primary:focus-visible {
+    background-color: var(--c-cta-hover);
+    border-color: var(--c-cta-hover);
+  }
+
+  .cta--secondary {
+    background-color: transparent;
+    border: 1px solid var(--c-line);
+    color: var(--c-ink);
+  }
+
+  .cta--secondary:hover,
+  .cta--secondary:focus-visible {
+    border-color: var(--c-ink-2);
+    color: var(--c-cta);
+  }
+
+  .cta:focus-visible {
+    outline: 2px solid var(--c-ink);
+    outline-offset: 2px;
+  }
+</style>

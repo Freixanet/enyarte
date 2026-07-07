@@ -34,6 +34,42 @@
     "payment": "Secure payment (bank transfer / card via Stripe link)",
     "linkLabel": "More about purchasing"
   },
+  "work": {
+    "back": "← Back to works",
+    "acquire": "Acquire — €{price}",
+    "inquireAvailability": "Ask about availability",
+    "notifyMe": "Notify me if it becomes available",
+    "commissionFromWork": "Private commission inspired by this work",
+    "mailtoAcquireSubject": "Interest in acquiring: {title} ({year})",
+    "mailtoAcquireBody": "Hello Enya,\n\nI am interested in acquiring the work \"{title}\" ({year}). Could you let me know the next steps?\n\nThank you.",
+    "mailtoNotifySubject": "Availability alert: {title} ({year})",
+    "mailtoNotifyBody": "Hello Enya,\n\nI would like to be notified if the work \"{title}\" ({year}) becomes available again.\n\nThank you.",
+    "openZoom": "Enlarge image of {title}",
+    "closeZoom": "Close"
+  },
+  "filters": {
+    "label": "Filter works",
+    "availability": "Availability",
+    "technique": "Technique",
+    "price": "Price",
+    "size": "Size",
+    "clear": "Show all",
+    "kindPainting": "Painting",
+    "kindInstallation": "Installation",
+    "kindObject": "Object",
+    "priceLow": "Under €1,000",
+    "priceMid": "€1,000–2,000",
+    "priceHigh": "Over €2,000",
+    "sizeSmall": "Small (<50 cm)",
+    "sizeMedium": "Medium (50–120 cm)",
+    "sizeLarge": "Large (>120 cm)",
+    "empty": "No works match the selected filters.",
+    "emptyCta": "Explore private commissions"
+  },
+  "scale": {
+    "title": "Scale visualization",
+    "caption": "Scale: figure 170 cm · work {dims}"
+  },
   "meta": {
     "home": {
       "title": "Home",

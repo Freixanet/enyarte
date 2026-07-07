@@ -1,0 +1,204 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  basePath: string;
+}
+
+const { locale, basePath } = Astro.props;
+
+const facets = [
+  {
+    param: 'status',
+    label: t('filters.availability', locale),
+    options: [
+      { value: 'available', label: t('status.available', locale) },
+      { value: 'reserved', label: t('status.reserved', locale) },
+      { value: 'sold', label: t('status.sold', locale) },
+    ],
+  },
+  {
+    param: 'kind',
+    label: t('filters.technique', locale),
+    options: [
+      { value: 'painting', label: t('filters.kindPainting', locale) },
+      { value: 'installation', label: t('filters.kindInstallation', locale) },
+      { value: 'object', label: t('filters.kindObject', locale) },
+    ],
+  },
+  {
+    param: 'price',
+    label: t('filters.price', locale),
+    options: [
+      { value: 'low', label: t('filters.priceLow', locale) },
+      { value: 'mid', label: t('filters.priceMid', locale) },
+      { value: 'high', label: t('filters.priceHigh', locale) },
+    ],
+  },
+  {
+    param: 'size',
+    label: t('filters.size', locale),
+    options: [
+      { value: 'small', label: t('filters.sizeSmall', locale) },
+      { value: 'medium', label: t('filters.sizeMedium', locale) },
+      { value: 'large', label: t('filters.sizeLarge', locale) },
+    ],
+  },
+];
+---
+
+<nav class="filters" aria-label={t('filters.label', locale)}>
+  {facets.map((facet) => (
+    <div class="filters__group">
+      <span class="filters__label">{facet.label}</span>
+      <ul class="filters__options">
+        {facet.options.map((option) => (
+          <li>
+            <a
+              class="filters__option"
+              href={`${basePath}?${facet.param}=${option.value}`}
+              data-filter={facet.param}
+              data-value={option.value}
+            >
+              {option.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+  <a class="filters__clear" href={basePath} data-filter-clear>{t('filters.clear', locale)}</a>
+</nav>
+
+<script>
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-work]'));
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-filter]'));
+  const clearLink = document.querySelector<HTMLAnchorElement>('[data-filter-clear]');
+  const empty = document.querySelector<HTMLElement>('[data-filter-empty]');
+  const FACETS = ['status', 'kind', 'price', 'size'] as const;
+  const params = new URLSearchParams(window.location.search);
+
+  function apply(): void {
+    let visible = 0;
+    for (const card of cards) {
+      const show = FACETS.every((facet) => {
+        const value = params.get(facet);
+        return value === null || card.dataset[facet] === value;
+      });
+      card.hidden = !show;
+      if (show) visible += 1;
+    }
+    if (empty) empty.hidden = visible > 0;
+    for (const link of links) {
+      const facet = link.dataset.filter ?? '';
+      const active = params.get(facet) === link.dataset.value;
+      link.classList.toggle('is-active', active);
+      if (active) {
+        link.setAttribute('aria-current', 'true');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    }
+  }
+
+  function sync(): void {
+    const query = params.toString();
+    window.history.replaceState(null, '', query ? `?${query}` : window.location.pathname);
+  }
+
+  for (const link of links) {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const facet = link.dataset.filter ?? '';
+      const value = link.dataset.value ?? '';
+      if (params.get(facet) === value) {
+        params.delete(facet);
+      } else {
+        params.set(facet, value);
+      }
+      sync();
+      apply();
+    });
+  }
+
+  clearLink?.addEventListener('click', (event) => {
+    event.preventDefault();
+    for (const facet of FACETS) params.delete(facet);
+    sync();
+    apply();
+  });
+
+  apply();
+</script>
+
+<style>
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    margin-block-end: var(--sp-5);
+    padding-block-end: var(--sp-4);
+    border-block-end: 1px solid var(--c-line);
+  }
+
+  .filters__group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+
+  .filters__label {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--c-ink-2);
+    min-width: var(--sp-8);
+  }
+
+  .filters__options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .filters__option,
+  .filters__clear {
+    display: inline-block;
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink);
+    text-decoration: none;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    padding: var(--sp-1) var(--sp-2);
+    transition:
+      border-color var(--dur-micro) var(--ease-fn),
+      background-color var(--dur-micro) var(--ease-fn),
+      color var(--dur-micro) var(--ease-fn);
+  }
+
+  .filters__option:hover,
+  .filters__option:focus-visible,
+  .filters__clear:hover,
+  .filters__clear:focus-visible {
+    border-color: var(--c-ink-2);
+  }
+
+  .filters__option.is-active {
+    background-color: var(--c-ink);
+    border-color: var(--c-ink);
+    color: var(--c-bone);
+  }
+
+  .filters__clear {
+    align-self: flex-start;
+    color: var(--c-ink-2);
+  }
+</style>
