@@ -3,11 +3,19 @@
 @import './tokens.css';
 @import './reset.css';
 
+:root {
+  --nav-h: 3.5rem;
+}
+
 html {
   background-color: var(--c-bone);
 }
 
 body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--c-bone);
   color: var(--c-ink);
   font-family: var(--f-ui);

@@ -14,24 +14,119 @@ const links = navLinks(locale);
 const homeHref = pathFor('home', locale);
 const switchHref = alternatePath(currentPath, slug);
 const switchLabel = locale === 'es' ? t('nav.langToEn', locale) : t('nav.langToEs', locale);
+
+const isActive = (href: string) =>
+  currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 
 <header class="nav" transition:persist="nav">
   <div class="nav__inner">
     <a class="nav__brand" href={homeHref}>{t('site.artistName', locale)}</a>
-    <nav class="nav__links" aria-label={t('nav.home', locale)}>
+
+    <nav class="nav__desktop" aria-label={t('nav.home', locale)}>
       {links.map((link) => (
-        <a
-          class:list={['nav__link', { 'nav__link--active': currentPath === link.href || currentPath.startsWith(`${link.href}/`) }]}
-          href={link.href}
-        >
+        <a class:list={['nav__link', { 'nav__link--active': isActive(link.href) }]} href={link.href}>
           {link.label}
         </a>
       ))}
+      <LangSwitch href={switchHref} label={switchLabel} locale={locale} />
     </nav>
-    <LangSwitch href={switchHref} label={switchLabel} locale={locale} />
+
+    <details class="nav__mobile" id="site-menu">
+      <summary class="nav__toggle" aria-label={t('nav.openMenu', locale)}>
+        <span class="nav__burger" aria-hidden="true"></span>
+      </summary>
+      <div class="nav__panel">
+        <nav class="nav__panel-links" aria-label={t('nav.home', locale)}>
+          {links.map((link) => (
+            <a
+              class:list={['nav__panel-link', { 'nav__panel-link--active': isActive(link.href) }]}
+              href={link.href}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <div class="nav__panel-lang">
+          <LangSwitch href={switchHref} label={switchLabel} locale={locale} />
+        </div>
+      </div>
+    </details>
   </div>
 </header>
+
+<script>
+  function initMenu() {
+    const details = document.getElementById('site-menu');
+    if (!(details instanceof HTMLDetailsElement) || details.dataset.bound === 'true') return;
+    details.dataset.bound = 'true';
+
+    const summary = details.querySelector<HTMLElement>('.nav__toggle');
+    const panel = details.querySelector<HTMLElement>('.nav__panel');
+    if (!summary || !panel) return;
+
+    const focusables = () =>
+      Array.from(
+        panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+      );
+
+    const lock = () => {
+      document.documentElement.style.overflow = 'hidden';
+    };
+    const unlock = () => {
+      document.documentElement.style.overflow = '';
+    };
+    const close = () => {
+      if (details.open) details.open = false;
+    };
+
+    details.addEventListener('toggle', () => {
+      if (details.open) {
+        lock();
+        focusables()[0]?.focus();
+      } else {
+        unlock();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!details.open) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+        summary.focus();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || active === summary)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    panel.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) close();
+    });
+
+    document.addEventListener('astro:before-swap', () => {
+      if (details.open) {
+        details.open = false;
+        unlock();
+      }
+    });
+  }
+
+  initMenu();
+  document.addEventListener('astro:page-load', initMenu);
+</script>
 
 <style>
   .nav {
@@ -48,9 +143,10 @@ const switchLabel = locale === 'es' ? t('nav.langToEn', locale) : t('nav.langToE
     align-items: center;
     justify-content: space-between;
     gap: var(--sp-3);
+    min-height: var(--nav-h);
     width: min(100% - var(--sp-4) * 2, var(--maxw));
     margin-inline: auto;
-    padding: var(--sp-3) var(--sp-4);
+    padding-inline: var(--sp-4);
   }
 
   .nav__brand {
@@ -61,14 +157,15 @@ const switchLabel = locale === 'es' ? t('nav.langToEn', locale) : t('nav.langToE
     white-space: nowrap;
   }
 
-  .nav__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-    justify-content: center;
+  /* Desktop nav (>= 48rem) */
+  .nav__desktop {
+    display: none;
   }
 
   .nav__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     font-family: var(--f-ui);
     font-size: var(--fs-meta);
     color: var(--c-ink-2);
@@ -81,5 +178,138 @@ const switchLabel = locale === 'es' ? t('nav.langToEn', locale) : t('nav.langToE
   .nav__link:hover,
   .nav__link:focus-visible {
     color: var(--c-ink);
+  }
+
+  /* Mobile disclosure (< 48rem) */
+  .nav__mobile {
+    display: block;
+  }
+
+  .nav__toggle {
+    position: relative;
+    z-index: 95;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-inline-end: calc(var(--sp-2) * -1);
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .nav__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav__toggle:focus-visible {
+    outline: 2px solid var(--c-ink);
+    outline-offset: 2px;
+  }
+
+  .nav__burger,
+  .nav__burger::before,
+  .nav__burger::after {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background-color: var(--c-ink);
+    transition:
+      transform var(--dur-micro) var(--ease-fn),
+      opacity var(--dur-micro) var(--ease-fn);
+  }
+
+  .nav__burger {
+    position: relative;
+  }
+
+  .nav__burger::before,
+  .nav__burger::after {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+  }
+
+  .nav__burger::before {
+    inset-block-start: -6px;
+  }
+
+  .nav__burger::after {
+    inset-block-start: 6px;
+  }
+
+  .nav__mobile[open] .nav__burger {
+    background-color: transparent;
+  }
+
+  .nav__mobile[open] .nav__burger::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .nav__mobile[open] .nav__burger::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .nav__panel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--sp-5);
+    padding: var(--sp-7) var(--sp-4) var(--sp-6);
+    background-color: var(--c-bone);
+  }
+
+  .nav__mobile[open] .nav__panel {
+    display: flex;
+  }
+
+  .nav__panel-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .nav__panel-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-family: var(--f-display);
+    font-size: var(--fs-h1);
+    line-height: var(--lh-tight);
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+
+  .nav__panel-link--active {
+    font-style: italic;
+  }
+
+  .nav__panel-lang {
+    margin-block-start: var(--sp-3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav__burger,
+    .nav__burger::before,
+    .nav__burger::after {
+      transition: none;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .nav__desktop {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--sp-4);
+    }
+
+    .nav__mobile {
+      display: none;
+    }
   }
 </style>

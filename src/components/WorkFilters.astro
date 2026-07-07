@@ -170,14 +170,16 @@ const facets = [
 
   .filters__option,
   .filters__clear {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     font-family: var(--f-ui);
     font-size: var(--fs-meta);
     color: var(--c-ink);
     text-decoration: none;
     border: 1px solid var(--c-line);
     border-radius: var(--radius);
-    padding: var(--sp-1) var(--sp-2);
+    padding: 0 var(--sp-3);
     transition:
       border-color var(--dur-micro) var(--ease-fn),
       background-color var(--dur-micro) var(--ease-fn),

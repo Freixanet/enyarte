@@ -33,6 +33,7 @@ const copyright = t('site.copyright', locale).replace('{year}', String(year));
 
 <style>
   .footer {
+    flex-shrink: 0;
     border-block-start: 1px solid var(--c-line);
     background-color: var(--c-paper);
     padding-block: var(--sp-5);
@@ -55,6 +56,9 @@ const copyright = t('site.copyright', locale).replace('{year}', String(year));
 
   .footer__link,
   .footer__social {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     font-family: var(--f-ui);
     font-size: var(--fs-meta);
     color: var(--c-ink-2);
