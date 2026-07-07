@@ -24,8 +24,7 @@
 
 ::view-transition-old(*),
 ::view-transition-new(*) {
-  mix-blend-mode: plus-lighter;
-  background-color: var(--c-bone);
+  mix-blend-mode: normal;
   animation-fill-mode: both;
 }
 
