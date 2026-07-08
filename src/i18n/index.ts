@@ -55,6 +55,14 @@ export function t(key: string, locale: Locale): string {
   return value;
 }
 
+export function tMaybe(key: string, locale: Locale): string | undefined {
+  const value = resolveKey(messages[locale] as Record<string, unknown>, key);
+  if (typeof value !== 'string' || value.length === 0) {
+    return undefined;
+  }
+  return value;
+}
+
 export function getLocale(pathname: string): Locale {
   if (pathname === '/en' || pathname.startsWith('/en/')) {
     return 'en';

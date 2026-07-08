@@ -237,13 +237,109 @@
     "statement": "La obra siempre empieza igual: una escena me llega como una visión. No como idea abstracta, sino como imagen completa — con luz, temperatura, silencio. La memoria y el deseo se superponen hasta que aparece una figura, un objeto, una grieta en lo cotidiano.\n\nPinto desde ese instante. El agua aparece una y otra vez porque es frontera y puente: separa Cuba de Miami, une lo íntimo con lo colectivo, sostiene cuerpos que cruzan sin mapa. Uso el color como temperatura emocional y el objeto como reliquia doméstica — un vaso, una mesa, un fragmento de vidrio — para hablar de lo que sobrevive al exilio.\n\nNo busco ilustrar la historia; busco hacerla visible en un umbral. Cada pieza es una travesía detenida en un fotograma: lo que se trae a la mesa, lo que se rompe, lo que aún puede llenarse.",
     "cvTitle": "CV",
     "educationTitle": "Formación",
-    "education1": "New World School of the Arts, Miami",
-    "education2": "MFA, California College of the Arts, San Francisco",
-    "education3": "Master in Art & Cultural Management, Rome Business School",
+    "education1": "2015 — Ingreso en New World School of the Arts (Miami), con trayecto diario desde los trece años.",
+    "education2": "2019 — Beca completa en California College of the Arts; traslado a San Francisco.",
+    "education3": "2023 — BFA en Pintura/Dibujo (CCA) y minor en Práctica social y compromiso comunitario.",
+    "education4": "2024 — Máster en Gestión del Arte y la Cultura, Rome Business School.",
+    "education5": "2025 — Finaliza estudios y se establece en Barcelona, España.",
     "exhibitionsCvTitle": "Exposiciones seleccionadas",
-    "exhibitionsCvEmpty": "Datos por confirmar — próxima actualización con el archivo completo.",
-    "pressCvTitle": "Prensa",
-    "pressCvEmpty": "Datos por confirmar — próxima actualización con recortes y menciones."
+    "pressCvTitle": "Prensa"
+  },
+  "exhibitionsData": {
+    "ex-itsliquid-venice-2024": {
+      "title": "Contemporary Venice 15ª edición",
+      "venue": "ItsLiquid Events",
+      "city": "Venecia",
+      "country": "Italia",
+      "notes": ""
+    },
+    "ex-anasaea-2024": {
+      "title": "The Travelers",
+      "venue": "Exposición virtual Anasaea",
+      "city": "Online",
+      "country": "—",
+      "notes": "Galería virtual de «The Travelers» en la plataforma de Anasaea."
+    },
+    "ex-artexpo-basel-2024": {
+      "title": "The Travelers — exposición digital",
+      "venue": "ArtBoxy en ArtExpo Basel",
+      "city": "Basel",
+      "country": "Suiza",
+      "notes": ""
+    },
+    "ex-arts-to-hearts-2024": {
+      "title": "The Travelers — galería virtual",
+      "venue": "Arts to Hearts",
+      "city": "Online",
+      "country": "—",
+      "notes": ""
+    },
+    "ex-art-collide-2024": {
+      "title": "Aesthetic Anomalies — finalista",
+      "venue": "Art Collide",
+      "city": "Online",
+      "country": "—",
+      "notes": "Galería virtual con «The Travelers: Home Comes with Me» como obra finalista."
+    },
+    "ex-frame-on-wheels-2024": {
+      "title": "Frame on Wheels Gallery",
+      "venue": "Frame on Wheels",
+      "city": "—",
+      "country": "—",
+      "notes": ""
+    },
+    "ex-somarts-2023": {
+      "title": "Exposición senior de Bellas Artes (CCA)",
+      "venue": "SomArts",
+      "city": "San Francisco",
+      "country": "EE. UU.",
+      "notes": ""
+    },
+    "ex-young-artists-2019": {
+      "title": "Young Artists Gallery",
+      "venue": "Young Artists Gallery",
+      "city": "—",
+      "country": "—",
+      "notes": ""
+    }
+  },
+  "pressData": {
+    "press-alexia-vorbe-2024": {
+      "title": "La obra de Enya Fontanills Pomares",
+      "source": "Artículo de Alexia Vorbe",
+      "description": "",
+      "quote": ""
+    },
+    "press-colors-book-2024": {
+      "title": "Colors Book con Enya Fontanills Pomares",
+      "source": "Arts to Hearts Project",
+      "description": "Exposición virtual + libro de artista «COLORS» con Enya Fontanills Pomares",
+      "quote": ""
+    },
+    "press-f4dae-grove-2019": {
+      "title": "Becaria Isaiah Fund Enya Fontanills",
+      "source": "F4DAE y Coconut Grove Arts Festival",
+      "description": "Becaria Isaiah Fund del Fund 4 Design & Art Education",
+      "quote": ""
+    },
+    "press-miami-herald-2019": {
+      "title": "Enya Fontanills en la muestra YAG Grove",
+      "source": "Miami Herald",
+      "description": "Por Christina Mayo",
+      "quote": "Artistas de secundaria mostrarán su obra en la muestra jurada de Grove"
+    },
+    "press-yag-2019": {
+      "title": "Young Artists' Gallery (YAG) 2019 — 2.º premio y beca",
+      "source": "Young Artists Gallery Competition 2019",
+      "description": "Segundo premio y beca en la competición anual YAG 2019",
+      "quote": ""
+    },
+    "press-smms-magnet-2015": {
+      "title": "Premios Magnet South Miami Middle School",
+      "source": "SMMS Magnet Awards & Recognition",
+      "description": "Youth Art Speak Miami-Dade County Youth Commission: Showcase · Scholastic Art Awards: mención honorífica · Annual Countywide Exhibition",
+      "quote": ""
+    }
   },
   "exhibitionsPage": {
     "typeGroup": "Colectiva",
@@ -262,6 +358,7 @@
     "downloadStatement": "Artist statement (PDF)",
     "downloadPhotos": "Imágenes hi-res",
     "comingSoon": "Disponible próximamente",
+    "pressItemsTitle": "Menciones y publicaciones",
     "contactTitle": "Contacto profesional",
     "contactText": "Para prensa, galerías y colaboraciones institucionales:"
   },

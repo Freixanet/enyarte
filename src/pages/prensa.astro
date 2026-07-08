@@ -1,13 +1,16 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { CONTACT_EMAIL } from '../config';
+import { getPressItems } from '../data/press';
 import { t } from '../i18n';
 
 const locale = 'es';
+const pressItems = getPressItems(locale);
 const downloads = [
-  { label: t('pressPage.downloadCv', locale), href: '/press/cv.pdf' },
-  { label: t('pressPage.downloadStatement', locale), href: '/press/statement.pdf' },
-  { label: t('pressPage.downloadPhotos', locale), href: '/press/images/' },
+  { label: t('pressPage.downloadCv', locale), href: '/press/cv.pdf', ready: false },
+  { label: t('pressPage.downloadStatement', locale), href: '/press/statement.pdf', ready: false },
+  { label: t('pressPage.downloadPhotos', locale), href: '/press/images/enya-profile.jpg', ready: true },
 ];
 ---
 
@@ -32,14 +35,50 @@ const downloads = [
     </section>
 
     <section class="content__section">
+      <h2 class="content__title">{t('pressPage.pressItemsTitle', locale)}</h2>
+      <ul class="press-grid">
+        {pressItems.map((item) => (
+          <li class="press-card">
+            <div class="press-card__media">
+              <Image
+                src={item.cover}
+                alt=""
+                widths={[240, 480]}
+                width={240}
+                height={180}
+                loading="lazy"
+                class="press-card__cover"
+              />
+            </div>
+            <div class="press-card__body">
+              <p class="press-card__year">{item.year}</p>
+              <h3 class="press-card__title">{item.title}</h3>
+              <p class="press-card__source">{item.source}</p>
+              {item.quote && <p class="press-card__quote">"{item.quote}"</p>}
+              {item.description && <p class="press-card__text">{item.description}</p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="content__section">
       <h2 class="content__title">{t('pressPage.downloadsTitle', locale)}</h2>
       <ul class="downloads">
         {downloads.map((item) => (
           <li class="downloads__item">
-            <span class="downloads__label">{item.label}</span>
-            <span class="downloads__path">{item.href}</span>
-            <!-- F7: enable download links when assets are ready -->
-            <span class="downloads__soon">{t('pressPage.comingSoon', locale)}</span>
+            {item.ready ? (
+              <a class="downloads__link" href={item.href} download>
+                <span class="downloads__label">{item.label}</span>
+                <span class="downloads__path">{item.href}</span>
+              </a>
+            ) : (
+              <>
+                <span class="downloads__label">{item.label}</span>
+                <span class="downloads__path">{item.href}</span>
+                <span class="downloads__soon">{t('pressPage.comingSoon', locale)}</span>
+              </>
+            )}
           </li>
         ))}
       </ul>
@@ -80,6 +119,78 @@ const downloads = [
     text-decoration: none;
   }
 
+  .press-grid {
+    list-style: none;
+    margin: var(--sp-4) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+
+  @media (min-width: 48rem) {
+    .press-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .press-card {
+    display: grid;
+    gap: var(--sp-3);
+    padding: var(--sp-3);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    background-color: var(--c-paper);
+  }
+
+  @media (min-width: 30rem) {
+    .press-card {
+      grid-template-columns: 7.5rem 1fr;
+      align-items: start;
+    }
+  }
+
+  .press-card__media {
+    aspect-ratio: 4 / 3;
+    background-color: var(--c-bone);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .press-card__cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .press-card__year {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    color: var(--c-ink-2);
+    margin-block-end: var(--sp-1);
+  }
+
+  .press-card__title {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: var(--fs-body);
+    line-height: var(--lh-tight);
+    color: var(--c-ink);
+    margin-block-end: var(--sp-1);
+  }
+
+  .press-card__source,
+  .press-card__text,
+  .press-card__quote {
+    font-family: var(--f-ui);
+    font-size: var(--fs-meta);
+    line-height: var(--lh-body);
+    color: var(--c-ink-2);
+  }
+
+  .press-card__quote {
+    margin-block: var(--sp-2);
+  }
+
   .downloads {
     list-style: none;
     margin: 0;
@@ -98,6 +209,13 @@ const downloads = [
     background-color: var(--c-paper);
   }
 
+  .downloads__link {
+    display: grid;
+    gap: var(--sp-1);
+    color: inherit;
+    text-decoration: none;
+  }
+
   .downloads__label {
     font-family: var(--f-ui);
     font-size: var(--fs-body);
@@ -109,5 +227,9 @@ const downloads = [
     font-family: var(--f-ui);
     font-size: var(--fs-meta);
     color: var(--c-ink-2);
+  }
+
+  .downloads__link .downloads__label {
+    color: var(--c-cta);
   }
 </style>

@@ -1,19 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import { getExhibitions, formatExhibitionLocation } from '../../data/exhibitions';
 import { t } from '../../i18n';
 
 const locale = 'en';
-
-const exhibitions = [
-  {
-    year: 2024,
-    title: 'Archive in Transit',
-    venue: 'Provisional space',
-    city: 'Madrid',
-    type: 'group' as const,
-    provisional: true,
-  },
-];
+const exhibitions = getExhibitions(locale);
 ---
 
 <Base locale={locale} pageKey="exhibitions">
@@ -25,15 +17,23 @@ const exhibitions = [
         <li class="timeline__item">
           <p class="timeline__year">{item.year}</p>
           <div class="timeline__body">
+            <div class="timeline__media">
+              <Image
+                src={item.cover}
+                alt=""
+                widths={[160, 320]}
+                width={160}
+                height={120}
+                loading="lazy"
+                class="timeline__cover"
+              />
+            </div>
             <h2 class="timeline__title">{item.title}</h2>
-            <p class="timeline__meta">{item.venue} · {item.city}</p>
+            <p class="timeline__meta">{formatExhibitionLocation(item)}</p>
             <p class="timeline__type">
               {item.type === 'solo' ? t('exhibitionsPage.typeSolo', locale) : t('exhibitionsPage.typeGroup', locale)}
             </p>
-            {item.provisional && (
-              <!-- PROVISIONAL: revisar con Enya -->
-              <p class="timeline__note">{t('exhibitionsPage.provisionalNote', locale)}</p>
-            )}
+            {item.notes && <p class="timeline__note">{item.notes}</p>}
           </div>
         </li>
       ))}
@@ -69,6 +69,21 @@ const exhibitions = [
     font-family: var(--f-ui);
     font-size: var(--fs-meta);
     color: var(--c-ink-2);
+  }
+
+  .timeline__media {
+    width: 10rem;
+    aspect-ratio: 4 / 3;
+    margin-block-end: var(--sp-3);
+    background-color: var(--c-paper);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .timeline__cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .timeline__title {

@@ -1,25 +1,19 @@
 ---
-title: The Reunion
+title: "The Reunion"
 year: 2023
-technique_es: Acrílico sobre lienzo
-technique_en: Acrylic on canvas
+technique_es: "Acrílico sobre lienzo"
+technique_en: "Acrylic painting on canvas"
 width_cm: 243.84
 height_cm: 152.4
 kind: painting
-status: reserved
-# series PROVISIONAL — travesía pendiente de confirmación cliente (F6/F7)
 series: miami
-# price_eur PROVISIONAL — pendiente confirmación cliente
-price_eur: 2800
+status: available
+price_eur: null
 featured: true
-cover: ../../assets/works/the-reunion.svg
-story_es: >-
-  Un reencuentro a escala monumental: figuras que emergen del azul profundo como
-  quien vuelve a verse tras años de agua entre medias. Pintura sobre la memoria
-  compartida y la espera.
-story_en: >-
-  A reunion at monumental scale: figures emerging from deep blue as if seeing each
-  other again after years of water in between. A painting about shared memory and
-  waiting.
-order: 6
+cover: ../../assets/works/the-reunion.jpg
+story_es: >- 
+  Un reencuentro a escala monumental: figuras que emergen del azul profundo como quien vuelve a verse tras años de agua entre medias. Pintura sobre la memoria compartida y la espera.
+story_en: >- 
+  The Reunion is a large painting of families reuniting after many years of separation, as if they walked the same oceans that separate them just to meet in the middle and see each other. This is something that I have experienced many times at airports in Miami and Cuba, families crying and hugging because they're either saying goodbye and don't know when they might see each other again or they're reuniting after so many years.
+order: 2
 ---

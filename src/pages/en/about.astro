@@ -1,11 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import portrait from '../../assets/about-portrait.svg';
+import portrait from '../../assets/about/enya-profile.jpg';
+import { getExhibitions, formatExhibitionLocation } from '../../data/exhibitions';
+import { getPressItems } from '../../data/press';
 import { t } from '../../i18n';
 
 const locale = 'en';
 const statementParagraphs = t('aboutPage.statement', locale).split('\n\n');
+const exhibitions = getExhibitions(locale).slice(0, 5);
+const pressItems = getPressItems(locale).slice(0, 4);
 ---
 
 <Base locale={locale} pageKey="about">
@@ -35,13 +39,21 @@ const statementParagraphs = t('aboutPage.statement', locale).split('\n\n');
         <li>{t('aboutPage.education1', locale)}</li>
         <li>{t('aboutPage.education2', locale)}</li>
         <li>{t('aboutPage.education3', locale)}</li>
+        <li>{t('aboutPage.education4', locale)}</li>
+        <li>{t('aboutPage.education5', locale)}</li>
       </ul>
       <h3 class="content__subtitle">{t('aboutPage.exhibitionsCvTitle', locale)}</h3>
-      <!-- PROVISIONAL: revisar con Enya -->
-      <p class="content__text">{t('aboutPage.exhibitionsCvEmpty', locale)}</p>
+      <ul class="content__list">
+        {exhibitions.map((item) => (
+          <li>{item.title}, {formatExhibitionLocation(item)}, {item.year}</li>
+        ))}
+      </ul>
       <h3 class="content__subtitle">{t('aboutPage.pressCvTitle', locale)}</h3>
-      <!-- PROVISIONAL: revisar con Enya -->
-      <p class="content__text">{t('aboutPage.pressCvEmpty', locale)}</p>
+      <ul class="content__list">
+        {pressItems.map((item) => (
+          <li>{item.title} — {item.source} ({item.year})</li>
+        ))}
+      </ul>
     </section>
   </div>
 </Base>
