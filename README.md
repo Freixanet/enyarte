@@ -1,43 +1,47 @@
-# Astro Starter Kit: Minimal
+# Enyarte
 
-```sh
-npm create astro@latest -- --template minimal
+Artist site for **Enya Fontanills** — contemporary surrealist painter and installation artist.
+
+Goals: sell original work, capture private commissions, and present gallery-grade craft without stealing focus from the art.
+
+---
+
+## Concept
+
+**"Water that separates and joins."** Two visual modes:
+
+- **Catalog** — bone background, commercial default
+- **Narrative** — deep blue, migration journey Cuba → Miami → San Francisco → Rome → Spain
+
+Bilingual ES/EN. Primary traffic: mobile from Instagram. Market axis: Miami–Spain.
+
+---
+
+## Stack (locked)
+
+- **Astro 5** (static SSG)
+- **GSAP** (+ ScrollTrigger, Flip)
+- **Lenis** (desktop only)
+- **Keystatic** (local markdown collections for works)
+- Self-hosted Fraunces + Inter variable fonts
+- TypeScript strict
+- Deploy: Cloudflare Pages
+
+No React/Vue/Svelte/Tailwind UI layer — Astro + vanilla CSS/JS + GSAP.
+
+---
+
+## Local development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+See `SPEC-enyarte.md` for full product/design constraints.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Author
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Marcos Freixanet** · [github.com/Freixanet](https://github.com/Freixanet) · marcfreixanet@gmail.com
