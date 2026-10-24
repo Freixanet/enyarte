@@ -1,47 +1,34 @@
 # Enyarte
 
-Artist site for **Enya Fontanills** — contemporary surrealist painter and installation artist.
+An artist's catalogue and narrative experience for Enya Fontanills, a contemporary surrealist painter and installation artist. Built with Astro, TypeScript and GSAP.
 
-Goals: sell original work, capture private commissions, and present gallery-grade craft without stealing focus from the art.
+## One collection, two ways to explore it
 
----
+**Catalogue** uses a light canvas to put the work and enquiries first. **Narrative** follows the artist's journey in a deep-blue visual mode. Both share the same works and support Spanish and English.
 
-## Concept
+The implementation keeps the interface in Astro and vanilla CSS/JavaScript. Keystatic is available for local editing during development; the production build stays static. Fonts are self-hosted, and motion is designed around reduced-motion preferences and mobile use.
 
-**"Water that separates and joins."** Two visual modes:
+## Explore locally
 
-- **Catalog** — bone background, commercial default
-- **Narrative** — deep blue, migration journey Cuba → Miami → San Francisco → Rome → Spain
-
-Bilingual ES/EN. Primary traffic: mobile from Instagram. Market axis: Miami–Spain.
-
----
-
-## Stack (locked)
-
-- **Astro 5** (static SSG)
-- **GSAP** (+ ScrollTrigger, Flip)
-- **Lenis** (desktop only)
-- **Keystatic** (local markdown collections for works)
-- Self-hosted Fraunces + Inter variable fonts
-- TypeScript strict
-- Deploy: Cloudflare Pages
-
-No React/Vue/Svelte/Tailwind UI layer — Astro + vanilla CSS/JS + GSAP.
-
----
-
-## Local development
-
-```bash
-npm install
+```sh
+npm ci
 npm run dev
 ```
 
-See `SPEC-enyarte.md` for full product/design constraints.
+## Build and check
 
----
+```sh
+npm run lint
+npm run build
+```
 
-## Author
+`npm run deploy` builds and publishes through Wrangler.
 
-**Marcos Freixanet** · [github.com/Freixanet](https://github.com/Freixanet) · mfreixanet@icloud.com
+## Structure and decisions
+
+- `src/` — pages, works, layouts, styles and interaction code.
+- `public/` — artwork and static assets.
+- `keystatic.config.ts` — local editorial model.
+- [Product and design constraints](SPEC-enyarte.md).
+
+Built by [Marcos Freixanet](https://github.com/Freixanet) · [Contact](mailto:mfreixanet@icloud.com).
